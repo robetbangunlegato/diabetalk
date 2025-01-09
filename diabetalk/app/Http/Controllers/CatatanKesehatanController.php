@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CatatanKesehatanController extends Controller
 {
@@ -12,7 +13,10 @@ class CatatanKesehatanController extends Controller
     public function index()
     {
         //
-        return view('catatanKesehatan.index');
+        $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
+        $sugarLevels = [110, 120, 105];
+        
+        return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));
     }
 
     /**

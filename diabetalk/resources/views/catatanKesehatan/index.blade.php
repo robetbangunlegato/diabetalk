@@ -1,5 +1,19 @@
 @extends('layouts_user.app')
 @section('content')
+    <style>
+        #chartKonsumsiAir {
+            width: 240px !important;
+            height: 200px !important;
+            text-align: center;
+        }
+
+        @media (max-width: 575.98px) {
+            #iconLangkah {
+                width: 150px !important;
+                height: 150px !important;
+            }
+        }
+    </style>
     <div class="container p-5">
         <div class="row" style="height: 100px; background-color: blueviolet">
             <div class="col-2 p-1 d-flex justify-content-center" style="height: 100px">
@@ -12,13 +26,94 @@
                 <p>mencatat hasil cek kesehatan disini</p>
             </div>
         </div>
+        {{-- CHART KONSUMSI AIR --}}
         <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite">
             <div class="col-xl-6 pt-4">
                 <div class="card">
                     <div class="card-body pb-0">
-                        <div class="d-flex justify-content-end">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
-                                class="btn btn-outline-secondary rounded-circle">+</a>
+                        <div class="row">
+                            <div class="offset-4 col-5">
+                                <h5>Konsumsi Air</h5>
+                            </div>
+                            <div class="offset-1 col-2">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    class="btn btn-outline-primary rounded-circle">+</a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <canvas id="chartKonsumsiAir"></canvas>
+                        </div>
+                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                            data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
+                            aria-controls="informasiKonsumsiAir">
+                            <i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <!-- Informasi Skala (Collapse) -->
+                        <div class="collapse mt-3 pb-3" id="informasikonsumsiair">
+                            <div class="card card-body">
+                                <h6>Skala Konsumsi Air</h6>
+                                <ul>
+                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
+                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
+                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- CHART LANGKAH  --}}
+            <div class="col-xl-6 pt-4">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="offset-4 col-5">
+                                <h5>Aktivitas</h5>
+                            </div>
+                            <div class="offset-1 col-2">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    class="btn btn-outline-primary rounded-circle">+</a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="icons/training.png" id="iconLangkah" alt="training">
+                            <div class="grid align-content-center">
+                                <h6>0/6000 langkah</h6>
+                                <h6>(kalori terbakar) kkal</h6>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                            data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
+                            aria-controls="informasiKonsumsiAir">
+                            <i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <!-- Informasi Skala (Collapse) -->
+                        <div class="collapse mt-3 pb-3" id="informasikonsumsiair">
+                            <div class="card card-body">
+                                <h6>Skala Konsumsi Air</h6>
+                                <ul>
+                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
+                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
+                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- CHART KADAR GULA DARAH --}}
+            <div class="col-xl-6 pt-4">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="offset-3 col-6">
+                                <h5>Kadar Gula Darah</h5>
+                            </div>
+                            <div class="offset-1 col-2">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    class="btn btn-outline-primary rounded-circle">+</a>
+                            </div>
                         </div>
                         <canvas id="chartKadarGulaDarah" width="400" height="200">
                         </canvas>
@@ -41,12 +136,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 p-4">
+            {{-- CHART HBAC1 --}}
+            <div class="col-xl-6 pt-4">
                 <div class="card">
                     <div class="card-body pb-0">
-                        <div class="d-flex justify-content-end">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
-                                class="btn btn-outline-secondary rounded-circle">+</a>
+                        <div class="row">
+                            <div class="offset-4 col-5">
+                                <h5>Kadar HbAc1</h5>
+                            </div>
+                            <div class="offset-1 col-2">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    class="btn btn-outline-primary rounded-circle">+</a>
+                            </div>
                         </div>
                         <canvas id="chartHbAc1" width="400" height="200">
                         </canvas>
@@ -68,42 +169,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 pt-4">
-                <div class="card">
-                    <div class="card-body pb-0">
-                        <div class="d-flex justify-content-end">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
-                                class="btn btn-outline-secondary rounded-circle">+</a>
-                        </div>
-                        <canvas id="chartKonsumsiAir" style="width: 400px; height: 200px">
-                        </canvas>
-                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
-                            data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
-                            aria-controls="informasiKonsumsiAir">
-                            <i class="bi bi-three-dots fs-4"></i>
-                        </button>
-                        <!-- Informasi Skala (Collapse) -->
-                        <div class="collapse mt-3 pb-3" id="informasikonsumsiair">
-                            <div class="card card-body">
-                                <h6>Skala Konsumsi Air</h6>
-                                <ul>
-                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 p-4">
-                aktivitas
-            </div>
         </div>
         <div class="row grid text-center mt-3" style="background-color: blueviolet">
             <h4 class="text-muted">Hasil lab lainnya</h4>
             <div>
-                tekanan darah+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="row">
+                                    <h5>Tekanan darah </h5>
+                                </div>
+                                <div class="row">
+                                    <p class="text-muted"><em>terakhir diupdate ...</em></p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <strong>100</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div>
                 kolesterol+
@@ -256,10 +343,8 @@
                 datasets: [{
                     data: [drinkValue, remainingValue],
                     backgroundColor: [
-                        drinkValue > 0 ? 'rgba(75, 192, 192, 0.6)' :
-                        'rgba(192, 192, 192, 0.6)', // Warna diminum
-                        remainingValue > 0 ? 'rgba(192, 192, 192, 0.6)' :
-                        'rgba(75, 192, 192, 0.6)', // Warna sisa
+                        drinkValue > 0 ? 'rgba(75, 192, 192, 0.6)' : 'rgba(192, 192, 192, 0.6)',
+                        remainingValue > 0 ? 'rgba(192, 192, 192, 0.6)' : 'rgba(75, 192, 192, 0.6)'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',
@@ -271,7 +356,12 @@
             options: {
                 plugins: {
                     legend: {
-                        position: 'top', // Posisi legenda
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 10
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
@@ -280,28 +370,23 @@
                             }
                         }
                     },
-                    // Plugin custom untuk menampilkan tanggal di tengah
                     centerText: {
                         display: true,
                         text: today
                     }
                 },
-                cutout: '70%', // Ukuran lubang tengah
+                cutout: '70%',
             },
-            plugins: [
-                // Plugin untuk menampilkan tanggal di tengah
-                {
+            plugins: [{
                     id: 'centerText',
                     beforeDraw: function(chart) {
                         const {
-                            width
-                        } = chart;
-                        const {
+                            width,
                             height
                         } = chart;
                         const ctx = chart.ctx;
                         ctx.save();
-                        ctx.font = '16px Arial';
+                        ctx.font = '12px Arial'; // Ukuran teks tengah lebih kecil
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
                         ctx.fillStyle = '#000';
@@ -309,7 +394,6 @@
                         ctx.restore();
                     }
                 },
-                // Plugin untuk menambahkan label nilai di segmen
                 {
                     id: 'segmentLabels',
                     afterDraw: function(chart) {
@@ -322,16 +406,13 @@
 
                         chart.getDatasetMeta(0).data.forEach((arc, index) => {
                             const value = dataset.data[index];
-                            const percentage = ((value / total) * 100).toFixed(1); // Persentase
                             const label = value > 0 ? `${value}` : '';
-
-                            // Koordinat label
                             const {
                                 x,
                                 y
                             } = arc.tooltipPosition();
                             ctx.save();
-                            ctx.font = '14px Arial';
+                            ctx.font = '10px Arial'; // Ukuran teks label lebih kecil
                             ctx.fillStyle = 'black';
                             ctx.textAlign = 'center';
                             ctx.fillText(label, x, y);

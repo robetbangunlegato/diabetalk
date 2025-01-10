@@ -17,6 +17,35 @@
 </head>
 
 <body>
+    <style>
+        #chartKonsumsiAir {
+            width: 240px !important;
+            height: 200px !important;
+            text-align: center;
+        }
+
+        #iconLangkah {
+            width: 200px;
+            height: 200px;
+        }
+
+        @media (max-width: 575.98px) {
+            #iconLangkah {
+                width: 150px !important;
+                height: 150px !important;
+            }
+
+            .teks-di-bawah-judul-halaman {
+                font-size: 14px !important;
+                /* Contoh ukuran kecil */
+            }
+
+            .teks-judul-halaman {
+                font-size: 28px !important;
+                margin-top: 16px !important;
+            }
+        }
+    </style>
     @yield('content')
 
     <!-- Bootstrap Bundle with Popper -->

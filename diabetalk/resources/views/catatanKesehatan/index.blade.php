@@ -1,33 +1,20 @@
 @extends('layouts_user.app')
 @section('content')
-    <style>
-        #chartKonsumsiAir {
-            width: 240px !important;
-            height: 200px !important;
-            text-align: center;
-        }
-
-        @media (max-width: 575.98px) {
-            #iconLangkah {
-                width: 150px !important;
-                height: 150px !important;
-            }
-        }
-    </style>
     <div class="container p-5">
-        <div class="row" style="height: 100px; background-color: blueviolet">
+        <div class="row" style="height: 100px;">
             <div class="col-2 p-1 d-flex justify-content-center" style="height: 100px">
                 <img src="logo-dengan-tulisan.png" alt="logo-diabetalk" class="h-100">
             </div>
             <div class="col grid text-center">
-                <h1 class="text-uppercase m-0">Catatan kesehatan</h1>
-                <p class="m-0">yuk pantau gula darah anda dengan
+                <p class="h1 text-uppercase m-0 teks-judul-halaman">Catatan kesehatan</p>
+                <p class="lead fs-5 m-0 teks-di-bawah-judul-halaman">
+                    yuk pantau gula darah anda dengan mencatat hasil cek kesehatan disini
                 </p>
-                <p>mencatat hasil cek kesehatan disini</p>
             </div>
         </div>
+
         {{-- CHART KONSUMSI AIR --}}
-        <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite">
+        <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite; border-radius: 10px;">
             <div class="col-xl-6 pt-4">
                 <div class="card">
                     <div class="card-body pb-0">
@@ -137,7 +124,7 @@
                 </div>
             </div>
             {{-- CHART HBAC1 --}}
-            <div class="col-xl-6 pt-4">
+            <div class="col-xl-6 pt-4 mb-3">
                 <div class="card">
                     <div class="card-body pb-0">
                         <div class="row">
@@ -170,33 +157,114 @@
                 </div>
             </div>
         </div>
-        <div class="row grid text-center mt-3" style="background-color: blueviolet">
-            <h4 class="text-muted">Hasil lab lainnya</h4>
-            <div>
+        <div class="row text-center mt-3 g-4" style="background-color: antiquewhite; border-radius: 10px;">
+            <div class="col-12">
+                <h4 class="text-muted">Hasil lab lainnya</h4>
+            </div>
+            <div class="col-xl-4 col-12">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="row">
-                                    <h5>Tekanan darah </h5>
+                    <div class="card-body p-1">
+                        <div class="grid">
+                            <div class="row">
+                                <div class="offset-2 col-8">
+                                    <p class="m-0">Tekanan darah</p>
                                 </div>
-                                <div class="row">
-                                    <p class="text-muted"><em>terakhir diupdate ...</em></p>
+                                <div class="col-2">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                        class="btn pt-0"><i class="bi bi-plus"></i></a>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <strong>100</strong>
+                            <p class="h2 bold mb-0">100</p>
+
+                            <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                                data-bs-target="#informasiTekananDarah" aria-expanded="false"
+                                aria-controls="informasiTekananDarah">
+                                <i class="bi bi-three-dots fs-4"></i>
+                            </button>
+                            <!-- Informasi (Collapse) -->
+                            <div class="collapse" id="informasiTekananDarah">
+                                <div class="card card-body">
+                                    <h6>Skala tekanan darah</h6>
+                                    <ul>
+                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
+                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
+                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-xl-4 col-12">
+                <div class="card">
+                    <div class="card-body p-1">
+                        <div class="grid">
+                            <div class="row">
+                                <div class="offset-2 col-8">
+                                    <p class="m-0">Kolesterol</p>
+                                </div>
+                                <div class="col-2">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                        class="btn pt-0"><i class="bi bi-plus"></i></a>
+                                </div>
+                            </div>
+                            <p class="h2 bold mb-0">100</p>
 
+                            <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                                data-bs-target="#informasiKolesterol" aria-expanded="false"
+                                aria-controls="informasiKolesterol">
+                                <i class="bi bi-three-dots fs-4"></i>
+                            </button>
+                            <!-- Informasi (Collapse) -->
+                            <div class="collapse" id="informasiKolesterol">
+                                <div class="card card-body">
+                                    <h6>Skala kolesterol</h6>
+                                    <ul>
+                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
+                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
+                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                kolesterol+
-            </div>
-            <div>
-                fungsi ginjal+
+            <div class="col-xl-4 col-12 mb-3">
+                <div class="card">
+                    <div class="card-body p-1">
+                        <div class="grid">
+                            <div class="row">
+                                <div class="offset-2 col-8">
+                                    <p class="m-0">Fungsi ginjal</p>
+                                </div>
+                                <div class="col-2">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                        class="btn pt-0"><i class="bi bi-plus"></i></a>
+                                </div>
+                            </div>
+                            <p class="h2 bold mb-0">100</p>
+
+                            <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                                data-bs-target="#informasiFungsiGinjal" aria-expanded="false"
+                                aria-controls="informasiFungsiGinjal">
+                                <i class="bi bi-three-dots fs-4"></i>
+                            </button>
+                            <!-- Informasi (Collapse) -->
+                            <div class="collapse" id="informasiFungsiGinjal">
+                                <div class="card card-body">
+                                    <h6>Skala tekanan darah</h6>
+                                    <ul>
+                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
+                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
+                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -356,7 +424,7 @@
             options: {
                 plugins: {
                     legend: {
-                        position: 'top',
+                        position: 'center',
                         labels: {
                             font: {
                                 size: 10
@@ -375,7 +443,7 @@
                         text: today
                     }
                 },
-                cutout: '70%',
+                cutout: '50%',
             },
             plugins: [{
                     id: 'centerText',
@@ -412,7 +480,7 @@
                                 y
                             } = arc.tooltipPosition();
                             ctx.save();
-                            ctx.font = '10px Arial'; // Ukuran teks label lebih kecil
+                            ctx.font = '14px Arial'; // Ukuran teks label lebih kecil
                             ctx.fillStyle = 'black';
                             ctx.textAlign = 'center';
                             ctx.fillText(label, x, y);

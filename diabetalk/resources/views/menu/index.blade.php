@@ -9,7 +9,29 @@
                 <h1 class="text-uppercase">diabetalk</h1>
             </div>
         </div>
-        <div class="row mt-3 d-flex">
+        <div class="row mt-3">
+            <div class="col-12">
+                <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                    data-bs-target="#menuLainnya" aria-expanded="false" aria-controls="menuLainnya">
+                    <i class="bi bi-three-dots fs-4"></i>
+                </button>
+            </div>
+            <!-- Informasi Skala (Collapse) -->
+            <div class="collapse" id="menuLainnya">
+                <div class="container">
+                    <div class="card card-body row text-center">
+                        <div class="col-12">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class="btn btn-danger" type="submit">Keluar<i
+                                        class="bi bi-box-arrow-right m-2"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex">
             <!-- Menu Item -->
             <div class="col-xl-4 col-md-6 col-6 pt-3">
                 <a href="{{ route('catatankesehatan.index') }}" class="btn btn-primary grid py-5 text-center">
@@ -47,6 +69,11 @@
             <h3>Hai, ...</h3>
             <br>
             <h3>bagaimana kondisi gula darah mu hari ini?</h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+
+            </div>
         </div>
     </div>
 @endsection

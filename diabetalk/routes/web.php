@@ -8,9 +8,13 @@ use App\Http\Controllers\TanyaDiabetalkController;
 use App\Http\Controllers\CatatanKesehatanController;
 use App\Http\Controllers\DietDanIntakeZatGiziController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return view('landing_page_1');
+
 });
+Route::get('/landing_page_2', function () { 
+    return view('landing_page_2'); 
+})->name('landing_page_2');
 
 Route::get('/menu', function () {
     return view('menu.index');
@@ -25,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengingatobat', PengingatObatController::class);
     Route::resource('diabetalking', DiabetalkingController::class);
     Route::resource('tanyadiabetalk', TanyaDiabetalkController::class);
+    Route::get('intro_page_1', function () {
+        return view('introPage.intro_page_1');
+    });
 });
 
 require __DIR__.'/auth.php';

@@ -32,6 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('intro_page_1', function () {
         return view('introPage.intro_page_1');
     });
+    Route::get('intro_page_2', function(){
+        return view('introPage.intro_page_2');
+    });
+    Route::get('intro_page_3', function () {
+        return view('introPage.intro_page_3');
+    });
 });
 
 require __DIR__.'/auth.php';

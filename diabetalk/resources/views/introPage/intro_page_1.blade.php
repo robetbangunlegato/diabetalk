@@ -21,16 +21,16 @@
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <p class="h1">Sudah cek HbAc1 anda ?</p>
             </div>
-            <form action="" method="post">
+            <form action="{{ route() }}" method="post">
+                @csrf
                 <div class="d-flex justify-content-center align-items-center">
                     <label for="kadarHbAc1">Kadar HbAc1 </label>
                     <input type="number" class="form-control m-2" id="kadarHbAc1" placeholder="Masukan kadar HbAc1..."> %
                 </div>
                 <div class="d-flex justify-content-center align-items-center mt-3">
-                    <button class="btn btn-primary" style="width: 200px">Simpan</button>
+                    <button class="btn btn-primary" style="width: 200px" type="submit">Simpan</button>
                 </div>
             </form>
-
         </div>
     </div>
 @endsection

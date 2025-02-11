@@ -16,7 +16,7 @@ class CheckIntroPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && !Auth::user()->has_seen_intro) {
-            return redirect()->route('intro');
+            return redirect()->route('intro_page_1');
         }
         return $next($request);
     }

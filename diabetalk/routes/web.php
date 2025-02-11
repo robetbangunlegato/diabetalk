@@ -6,6 +6,7 @@ use App\Http\Controllers\DiabetalkingController;
 use App\Http\Controllers\PengingatObatController;
 use App\Http\Controllers\TanyaDiabetalkController;
 use App\Http\Controllers\CatatanKesehatanController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DietDanIntakeZatGiziController;
 
 Route::get('/', function(){
@@ -20,6 +21,12 @@ Route::get('/menu', function () {
     return view('menu.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('/verify-otp', [RegisteredUserController::class, 'verifyOtp'])->name('verifyOtp');
+
+Route::get('/otp-verification', function(){
+    return view('otp-verification');
+})->name('otp-verification');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -31,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tanyadiabetalk', TanyaDiabetalkController::class);
     Route::get('intro_page_1', function () {
         return view('introPage.intro_page_1');
-    });
+    })->name('intro_page_1');
     Route::get('intro_page_2', function(){
         return view('introPage.intro_page_2');
     });

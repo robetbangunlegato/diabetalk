@@ -26,6 +26,17 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // Periksa apakah user sudah verifikasi OTP
+        $user = Auth::user();
+        if (!$user->is_verified) {
+            Auth::logout();
+            return redirect()->route('otp-verification')->with('error', 'Anda harus memverifikasi OTP terlebih dahulu.');
+        }
+
+        if(!$user->has_seen_intro){
+            return redirect()->route('intro_page_1');
+        }
+
         $request->session()->regenerate(); 
 
         return redirect()->intended(route('dashboard', absolute: false));

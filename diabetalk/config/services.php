@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'whatsapp_gateway' => [
+        'userkey' => env('WHATSAPP_GATEWAY_USERKEY'),
+        'passkey' => env('WHATSAPP_GATEWAY_PASSKEY'),
+    ],
+
+
 ];

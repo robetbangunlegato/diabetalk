@@ -8,8 +8,8 @@
         </div>
         <div class="row mt-4">
             {{-- <form> --}}
-            <div class="card">
-                <div class="card-body">
+            <div class="">
+                <div class="">
                     <p class="lead text-center">Sudah konsumsi air?</p>
                     <!-- Tumpukan img dan input -->
                     <div class="d-flex justify-content-center position-relative" style="margin: 100px">

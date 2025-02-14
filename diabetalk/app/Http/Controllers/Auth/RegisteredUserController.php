@@ -44,7 +44,6 @@ class RegisteredUserController extends Controller
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
         'whatsapp' => ['required', 'numeric', 'digits_between:11,13', 'unique:'.User::class],
     ]);
-
     
     $otp = rand(100000, 999999);
     $user = User::create([

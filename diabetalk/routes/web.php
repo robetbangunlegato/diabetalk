@@ -8,6 +8,9 @@ use App\Http\Controllers\TanyaDiabetalkController;
 use App\Http\Controllers\CatatanKesehatanController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DietDanIntakeZatGiziController;
+use Illuminate\Http\Request;
+use App\Models\data_personal;
+use App\Models\User;
 
 Route::get('/', function(){
     return view('landing_page_1');
@@ -45,6 +48,22 @@ Route::middleware('auth')->group(function () {
     Route::get('intro_page_3', function () {
         return view('introPage.intro_page_3');
     });
+    Route::post('data_personal', function(Request $request){
+        $validate = $request->validate([
+            'weight' => 'required',
+            'height' => 'required'
+        ]);
+        $data_personals = new data_personal();
+        $data_personals->weight = $validate['weight'];
+        $data_personals->height = $validate['height'];
+        $data_personals->user_id = Auth()->user()->id;
+        $data_personals->save();
+
+        $user = User::find(Auth()->user()->id);
+        $user->has_seen_intro = true;
+        $user->update();
+        return view('menu.index');
+    })->name('data_personal');
 });
 
 require __DIR__.'/auth.php';

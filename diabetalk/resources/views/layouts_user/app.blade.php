@@ -18,13 +18,13 @@
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <style>
-        body {
+        /* body {
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
             margin: 0;
-        }
+        } */
     </style>
 </head>
 

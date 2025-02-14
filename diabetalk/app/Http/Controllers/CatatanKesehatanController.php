@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\health_record;
 
 class CatatanKesehatanController extends Controller
 {
@@ -15,7 +16,6 @@ class CatatanKesehatanController extends Controller
         //
         $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
         $sugarLevels = [110, 120, 105];
-        
         return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));
     }
 
@@ -33,6 +33,25 @@ class CatatanKesehatanController extends Controller
     public function store(Request $request)
     {
         //
+        $validate = $request->validate([
+            'value' => 'required',
+            'record_type' => 'required'
+        ]);
+        $health_record = new health_record();
+        $health_record->value = $validate['value'];
+        $health_record->record_type = $validate['record_type'];
+        $health_record->user_id = Auth()->user()->id;
+        $health_record->save();
+
+        
+        if($request->next_page == 'intro_page_2'){
+            return view('introPage.intro_page_2');
+        }elseif($request->next_page == 'intro_page_3'){
+            return view('introPage.intro_page_3');
+        }
+        $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
+        $sugarLevels = [110, 120, 105];
+        return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));
     }
 
     /**

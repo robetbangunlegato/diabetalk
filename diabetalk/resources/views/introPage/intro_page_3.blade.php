@@ -14,15 +14,18 @@
         <div class="row mt-4">
             <p class="h1 text-center">Diabetalk ingin tahu</p>
             <p class="lead text-center">Tinggi dan berat badan anda</p>
-            <form action="">
+            <form action="{{ route('data_personal') }}" method="POST">
+                @csrf
                 <div class=" d-flex justify-content-center">
-                    tinggi badan <input type="number" class="form-control mx-3" style="width: 100px"> cm
+                    tinggi badan <input type="number" class="form-control mx-3" style="width: 100px" name="height"
+                        min="0" required> cm
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    berat badan <input type="number" class="form-control mx-3" style="width: 100px"> kg
+                    berat badan <input type="number" class="form-control mx-3" style="width: 100px" name="weight"
+                        min="0" required> kg
                 </div>
                 <div class="d-flex justify-content-center my-3">
-                    <button class="btn btn-primary rounded-pill">Simpan</button>
+                    <button class="btn btn-primary rounded-pill" type="submit">Simpan</button>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
                     <p class="text-center text-secondary" id="teksInformasi">*Informasi Tinggi dan Berat Badan

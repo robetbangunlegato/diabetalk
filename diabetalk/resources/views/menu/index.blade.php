@@ -69,9 +69,9 @@
             </div>
         </div>
         <div class="row mt-3 text-center">
-            <h3>Hai, ...</h3>
+            <h5>Hai, {{ Auth()->user()->name }}</h5>
             <br>
-            <h3>bagaimana kondisi gula darah mu hari ini?</h3>
+            <h5>bagaimana kondisi gula darah mu hari ini?</h5>
         </div>
         <div class="row text-center">
             <div class="col-12">

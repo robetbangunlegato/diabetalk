@@ -17,7 +17,8 @@ use App\Services\WhatsAppService;
 class RegisteredUserController extends Controller
 {
     protected $WhatsAppService;
-     
+
+    //  function ini dibuat agar class RegisteredUserController ini dapat mengakses class WhatsAppService untuk membantu mengirim pesan WA.
     public function __construct(WhatsAppService $WhatsAppService)
     {
         $this->WhatsAppService = $WhatsAppService;

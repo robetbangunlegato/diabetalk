@@ -21,6 +21,7 @@ class PengingatObatController extends Controller
     public function create()
     {
         //
+        return view('pengingatObat.create');
     }
 
     /**

@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="row mt-3 text-center">
-            <h5>Hai, {{ Auth()->user()->name }}</h5>
+            <h5>Hai {{ Auth()->user()->name }},</h5>
             <br>
             <h5>bagaimana kondisi gula darah mu hari ini?</h5>
         </div>

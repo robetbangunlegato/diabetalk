@@ -30,6 +30,7 @@ class PengingatObatController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
     }
 
     /**

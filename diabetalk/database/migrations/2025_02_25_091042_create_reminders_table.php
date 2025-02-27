@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('reminders', function (Blueprint $table) {
             $table->id();
-            $table->time('reminder_time');
-            $table->enum('frequency', ['daily', 'weekly', 'custom'])->default('daily');
+            $table->string('title');
+            $table->text('description')->nullable(); // deskripsi untuk dosis/nama obat dll.
+            $table->enum('instruction',['sebelum makan', 'sesudah makan', 'tidak ada']);
             $table->enum('reminder_method', ['gmail', 'push_notification', 'whatsapp'])->default('gmail');
-            $table->enum('status', ['pending', 'completed'])->default('pending');
+            $table->time('reminder_time');
             $table->timestamps();
+            
+            // $table->enum('status', ['pending', 'completed'])->default('pending');
         });
     }
 

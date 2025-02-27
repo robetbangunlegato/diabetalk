@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medications', function (Blueprint $table) {
+        Schema::create('reminder_schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('dosage');
-            $table->text('instructions');
+            $table->foreignId('reminder_id')->constrained()->onDelete('cascade'); // Relasi ke tabel reminders
+            $table->enum('day', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu', 'setiap_hari']); // Hari pengingat
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medications');
+        Schema::dropIfExists('reminder_schedules');
     }
 };

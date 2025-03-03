@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reminder extends Model
 {
     //
-    protected $fillable = ['user_id', 'medication_id', 'reminder_time', 'frequency', 'reminder_method', 'status'];
+    protected $fillable = ['title', 'description', 'instruction', 'reminder_method', 'reminder_time', 'user_id'];
 
     public function user()
     {

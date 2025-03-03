@@ -25,10 +25,10 @@
         }
     </style>
     <div class="container p-5">
+
         <div class="row" style="height: 100px;">
             <div class="col-2 p-1 d-flex justify-content-center" style="height: 100px">
                 <img src="{{ asset('logo-dengan-tulisan.png') }}" alt="logo-diabetalk" class="h-100">
-
             </div>
             <div class="col d-flex justify-content-center align-items-center">
                 <p class="text-uppercase h1">Pengingat Obat</p>
@@ -141,16 +141,17 @@
                     <div class="d-flex flex-wrap gap-3">
                         <!-- Radio Hanya Sekali -->
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="repeat_type" id="just_once"
+                            <input class="form-check-input" type="radio" name="day" id="just_once"
                                 value="just_once" checked>
                             <label class="form-check-label" for="just_once">Hanya sekali</label>
                         </div>
+
                         |
 
                         <!-- Radio Setiap Hari -->
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="repeat_type" id="everyday"
-                                value="setiap_hari">
+                            <input class="form-check-input" type="radio" name="day" id="everyday"
+                                value="everyday">
                             <label class="form-check-label" for="everyday">Setiap hari</label>
                         </div>
 
@@ -240,6 +241,7 @@
                 });
             });
         });
+
         document.addEventListener("trix-file-accept", function(event) {
             event.preventDefault();
             alert("Upload file tidak diperbolehkan!");

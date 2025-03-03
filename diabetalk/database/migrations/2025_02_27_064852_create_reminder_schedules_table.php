@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reminder_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reminder_id')->constrained()->onDelete('cascade'); // Relasi ke tabel reminders
-            $table->enum('day', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu', 'setiap_hari']); // Hari pengingat
+            $table->enum('day', ['just_once', 'everyday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']); // Hari pengingat
             $table->timestamps();
         });
     }

@@ -15,19 +15,15 @@
             <a href="{{ route('pengingatobat.create') }}" class="btn btn-primary">Tambah</a>
         </div>
         {{-- alert --}}
-        <div class="row">
+        <div class="row mt-3">
             @if (session('success'))
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success text-white" role="alert" id="success_message">
-                            <strong>Berhasil!</strong> {{ session('success') }}
-                        </div>
-                    </div>
+                <div class="alert alert-success" role="alert" id="alert">
+                    Berhasil! {{ session('success') }}
                 </div>
             @endif
         </div>
         {{-- table --}}
-        <div class="row mt-4">
+        <div class="row mt-3">
             <table class="table table-primary table-striped text-center table-responsive">
                 <thead>
                     <tr>
@@ -35,21 +31,41 @@
                             No
                         </th>
                         <th>
-                            Content
+                            Judul
+                        </th>
+                        <th>
+                            Deskripsi
+                        </th>
+                        <th>
+                            Instruksi
+                        </th>
+                        <th>
+                            Metode pengingat
+                        </th>
+                        <th>
+                            Waktu
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>content</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>content</td>
-                    </tr>
+                    @foreach ($reminders as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->description }}</td>
+                            <td>{{ $item->instruction }}</td>
+                            <td>{{ $item->reminder_method }}</td>
+                            <td>{{ $item->reminder_time }}</td>
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#alert').delay(3000).fadeOut('slow');
+        });
+    </script>
 @endsection

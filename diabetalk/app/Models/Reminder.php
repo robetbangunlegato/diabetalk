@@ -14,8 +14,8 @@ class Reminder extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function medication()
+    public function reminderschedule()
     {
-        return $this->belongsTo(Medication::class);
+        return $this->hasMany(ReminderSchedule::class);
     }
 }

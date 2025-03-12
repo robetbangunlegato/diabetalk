@@ -103,5 +103,8 @@ class PengingatObatController extends Controller
     public function destroy(string $id)
     {
         //
+        $pengingatobat = Reminder::findOrFail($id);
+        $pengingatobat->delete();
+        return redirect()->route('pengingatobat.index')->with('success', 'Pengingat berhasil dihapus!');
     }
 }

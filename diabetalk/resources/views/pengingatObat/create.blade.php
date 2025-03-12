@@ -1,7 +1,5 @@
 @extends('layouts_user.app')
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js"></script>
     <style>
         /* Sembunyikan tombol kode */
         trix-toolbar [data-trix-attribute="quote"] {

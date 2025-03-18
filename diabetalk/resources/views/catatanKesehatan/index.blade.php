@@ -13,10 +13,11 @@
             </div>
         </div>
 
-        {{-- CHART KONSUMSI AIR --}}
+
         <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite; border-radius: 10px;">
+            {{-- CHART KONSUMSI AIR --}}
             <div class="col-xl-6 pt-4">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-4 col-5">
@@ -25,30 +26,44 @@
                             <div class="offset-1 col-2">
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
                                     class="btn btn-outline-primary rounded-circle">+</a>
+                                </a>
                             </div>
                         </div>
+
                         <div class="d-flex justify-content-center">
                             <canvas id="chartKonsumsiAir"></canvas>
                         </div>
-                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+
+                        <!-- Tombol Collapse -->
+                        <button class="btn w-100 text-center mt-2" data-bs-toggle="collapse"
                             data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
                             aria-controls="informasiKonsumsiAir">
-                            <i class="bi bi-three-dots fs-4"></i>
+                            <i class="bi bi-chevron-down fs-5"></i> Informasi Konsumsi Air
                         </button>
+
                         <!-- Informasi Skala (Collapse) -->
-                        <div class="collapse mt-3 pb-3" id="informasikonsumsiair">
-                            <div class="card card-body">
-                                <h6>Skala Konsumsi Air</h6>
-                                <ul>
-                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                        <div class="collapse mt-3 pb-3" id="informasiKonsumsiAir">
+                            <div class="card card-body border-light shadow-sm">
+                                <h6 class="fw-bold mb-3">💧 Rekomendasi Cairan Pasien DM</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle-fill text-primary"></i> Perempuan: 30ml/kg Berat badan
+                                    </li>
+                                    <li><i class="bi bi-check-circle-fill text-primary"></i> Laki-laki: 40ml/kg Berat badan
+                                    </li>
+                                    <li class="mt-2">
+                                        <strong>Contoh:</strong> <br> Perempuan dengan berat badan 56kg
+                                        <ul class="ps-3">
+                                            <li><i class="bi bi-droplet-half"></i> 30ml x 56kg = 1680 ml</li>
+                                            <li><i class="bi bi-cup"></i> Setara dengan 7 gelas/hari</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             {{-- CHART LANGKAH  --}}
             <div class="col-xl-6 pt-4">
                 <div class="card">
@@ -71,12 +86,11 @@
                         </div>
 
                         <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
-                            data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
-                            aria-controls="informasiKonsumsiAir">
+                            data-bs-target="#informasiLangkah" aria-expanded="false" aria-controls="informasiLangkah">
                             <i class="bi bi-three-dots fs-4"></i>
                         </button>
                         <!-- Informasi Skala (Collapse) -->
-                        <div class="collapse mt-3 pb-3" id="informasikonsumsiair">
+                        <div class="collapse mt-3 pb-3" id="informasiLangkah">
                             <div class="card card-body">
                                 <h6>Skala Konsumsi Air</h6>
                                 <ul>

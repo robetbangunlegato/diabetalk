@@ -24,9 +24,36 @@
                                 <h5>Konsumsi Air</h5>
                             </div>
                             <div class="offset-1 col-2">
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                {{-- button add data water consumption --}}
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKonsumsiAir"
                                     class="btn btn-outline-primary rounded-circle">+</a>
                                 </a>
+                                {{-- modal add data water consumption --}}
+                                <div class="modal fade" id="modalKonsumsiAir" tabindex="-1"
+                                    aria-labelledby="modalKonsumsiAir" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <form action="" method="post">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalKonsumsiAir">Jumlah konsumsi air</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control" id="kadarGulaDarah"
+                                                            placeholder="Masukan kadar gula darah">
+                                                        <label for="kadarGulaDarah">Masukan jumlah konsumsi air...</label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer grid">
+                                                    <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -34,7 +61,7 @@
                             <canvas id="chartKonsumsiAir"></canvas>
                         </div>
 
-                        <!-- Tombol Collapse -->
+                        <!-- Button Collapse -->
                         <button class="btn w-100 text-center mt-2" data-bs-toggle="collapse"
                             data-bs-target="#informasiKonsumsiAir" aria-expanded="false"
                             aria-controls="informasiKonsumsiAir">
@@ -44,14 +71,14 @@
                         <!-- Informasi Skala (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiKonsumsiAir">
                             <div class="card card-body border-light shadow-sm">
-                                <h6 class="fw-bold mb-3">💧 Rekomendasi Cairan Pasien DM</h6>
+                                <h6 class="fw-bold mb-3">💧 Rekomendasi Cairan Pasien Diabetes Melitus</h6>
                                 <ul class="list-unstyled">
                                     <li><i class="bi bi-check-circle-fill text-primary"></i> Perempuan: 30ml/kg Berat badan
                                     </li>
                                     <li><i class="bi bi-check-circle-fill text-primary"></i> Laki-laki: 40ml/kg Berat badan
                                     </li>
                                     <li class="mt-2">
-                                        <strong>Contoh:</strong> <br> Perempuan dengan berat badan 56kg
+                                        <strong>Contoh:</strong> <br> Perempuan dengan berat badan 56kg, maka:
                                         <ul class="ps-3">
                                             <li><i class="bi bi-droplet-half"></i> 30ml x 56kg = 1680 ml</li>
                                             <li><i class="bi bi-cup"></i> Setara dengan 7 gelas/hari</li>
@@ -66,15 +93,41 @@
 
             {{-- CHART LANGKAH  --}}
             <div class="col-xl-6 pt-4">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-4 col-5">
                                 <h5>Aktivitas</h5>
                             </div>
+                            {{-- button add data step --}}
                             <div class="offset-1 col-2">
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalLangkah"
                                     class="btn btn-outline-primary rounded-circle">+</a>
+                            </div>
+                            {{-- modal add data step --}}
+                            <div class="modal fade" id="modalLangkah" tabindex="-1" aria-labelledby="modalLangkah"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <form action="" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLangkah">Jumlah langkah</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" class="form-control" id="kadarGulaDarah"
+                                                        placeholder="Masukan kadar gula darah">
+                                                    <label for="kadarGulaDarah">Masukan jumlah langkah...</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer grid">
+                                                <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
@@ -85,18 +138,21 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                        <!-- Button Collapse -->
+                        <button class="btn w-100 text-center mt-2" data-bs-toggle="collapse"
                             data-bs-target="#informasiLangkah" aria-expanded="false" aria-controls="informasiLangkah">
-                            <i class="bi bi-three-dots fs-4"></i>
+                            <i class="bi bi-chevron-down fs-5"></i> Informasi Aktifitas
                         </button>
+
                         <!-- Informasi Skala (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiLangkah">
-                            <div class="card card-body">
-                                <h6>Skala Konsumsi Air</h6>
+                            <div class="card card-body border-light shadow-sm">
+                                <h6 class="fw-bold mb-3">Rekomendasi langkah harian</h6>
                                 <ul>
-                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                    <li>Durasi : 30 menit - 1 jam</li>
+                                    <li>Frekuensi : minimal 5x per minggu</li>
+                                    <li>Langkah harian : 7000-10.000 per hari</li>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -105,7 +161,7 @@
             </div>
             {{-- CHART KADAR GULA DARAH --}}
             <div class="col-xl-6 pt-4">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-3 col-6">
@@ -118,22 +174,59 @@
                         </div>
                         <canvas id="chartKadarGulaDarah" width="400" height="200">
                         </canvas>
-                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+
+                        {{-- Button collapse --}}
+                        <button class="btn w-100 text-center mt-2" data-bs-toggle="collapse"
                             data-bs-target="#informasiSkalaGulaDarah" aria-expanded="false"
                             aria-controls="informasiSkalaGulaDarah">
-                            <i class="bi bi-three-dots fs-4"></i>
+                            <i class="bi bi-chevron-down fs-5"></i> Informasi kadar gula darah
                         </button>
+
                         <!-- Informasi Skala (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiSkalaGulaDarah">
-                            <div class="card card-body">
-                                <h6>Skala Kadar Gula Darah</h6>
-                                <ul>
-                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
-                                </ul>
+                            <div class="card shadow-sm">
+                                <div
+                                    class="card-header bg-primary text-white d-flex align-items-center justify-content-center">
+                                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Skala Kadar Gula Darah</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="text-primary"><i class="bi bi-droplet"></i> Gula Darah Puasa</h6>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                            <strong>70-99 mg/dL:</strong> Normal
+                                        </li>
+                                        <li class="list-group-item text-warning"><i class="bi bi-exclamation-circle"></i>
+                                            <strong>100-125 mg/dL:</strong> Pra-diabetes
+                                        </li>
+                                        <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i>
+                                            <strong>>125 mg/dL:</strong> Diabetes
+                                        </li>
+                                    </ul>
+
+                                    <h6 class="text-primary"><i class="bi bi-clock-history"></i> Gula Darah Setelah Makan
+                                        (2 Jam)</h6>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item text-success"><i class="bi bi-check-circle"></i> Normal
+                                            : < 140 mg/dL</li>
+                                        <li class="list-group-item text-warning"><i class="bi bi-exclamation-circle"></i>
+                                            Pra-diabetes : 140-199 mg/dL</li>
+                                        <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i> Diabetes :
+                                            > 200 mg/dL</li>
+                                    </ul>
+
+                                    <h6 class="text-primary"><i class="bi bi-clipboard-heart"></i> Gula Darah Acak</h6>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            Untuk diagnosis diabetes, kadar gula darah acak <strong class="text-danger">di
+                                                atas 200 mg/dL</strong>
+                                            dapat mengindikasikan DM, terutama jika disertai gejala seperti sering haus,
+                                            sering buang air kecil, dan kelelahan.
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -143,7 +236,7 @@
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-4 col-5">
-                                <h5>Kadar HbAc1</h5>
+                                <h5>Kadar HbA1c</h5>
                             </div>
                             <div class="offset-1 col-2">
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
@@ -152,18 +245,20 @@
                         </div>
                         <canvas id="chartHbAc1" width="400" height="200">
                         </canvas>
-                        <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
+                        {{-- button collapse --}}
+                        <button class="btn w-100 text-center mt-2" data-bs-toggle="collapse"
                             data-bs-target="#informasiHbAc1" aria-expanded="false" aria-controls="informasiHbAc1">
-                            <i class="bi bi-three-dots fs-4"></i>
+                            <i class="bi bi-chevron-down fs-5"></i> Informasi kadar HbA1c
                         </button>
                         <!-- Informasi Skala (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiHbAc1">
                             <div class="card card-body">
-                                <h6>Skala HbAc1</h6>
+                                <h6>Kadar HbA1c untuk penderita diabetes melitus</h6>
                                 <ul>
-                                    <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                    <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                    <li class="text-success"><strong>
+                                            < 5,7%:</strong> Normal</li>
+                                    <li class="text-warning"><strong> 5,7% - 6,4%: </strong> Pra-diabetes</li>
+                                    <li class="text-danger"><strong>>6,4%:</strong> Diabetes</li>
                                 </ul>
                             </div>
                         </div>

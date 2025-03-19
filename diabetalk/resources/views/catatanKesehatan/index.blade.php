@@ -29,10 +29,10 @@
                                     class="btn btn-outline-primary rounded-circle">+</a>
                                 </a>
                                 {{-- modal add data water consumption --}}
-                                <div class="modal fade" id="modalKonsumsiAir" tabindex="-1"
-                                    aria-labelledby="modalKonsumsiAir" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <form action="" method="post">
+                                <form action="" method="post">
+                                    <div class="modal fade" id="modalKonsumsiAir" tabindex="-1"
+                                        aria-labelledby="modalKonsumsiAir" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="modalKonsumsiAir">Jumlah konsumsi air</h5>
@@ -50,10 +50,9 @@
                                                     <button type="submit" class="btn btn-primary col-12">Simpan</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
 
@@ -270,6 +269,7 @@
             <div class="col-12">
                 <h4 class="text-muted">Hasil lab lainnya</h4>
             </div>
+            {{-- Tekanan darah --}}
             <div class="col-xl-4 col-12">
                 <div class="card">
                     <div class="card-body p-1">
@@ -283,21 +283,23 @@
                                         class="btn pt-0"><i class="bi bi-plus"></i></a>
                                 </div>
                             </div>
-                            <p class="h2 bold mb-0">100</p>
 
+                            <p class="h2 bold mb-0">100</p>
+                            {{-- Button collapse --}}
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
                                 data-bs-target="#informasiTekananDarah" aria-expanded="false"
                                 aria-controls="informasiTekananDarah">
                                 <i class="bi bi-three-dots fs-4"></i>
                             </button>
+
                             <!-- Informasi (Collapse) -->
                             <div class="collapse" id="informasiTekananDarah">
                                 <div class="card card-body">
                                     <h6>Skala tekanan darah</h6>
                                     <ul>
-                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
+                                        <li class="text-success"><strong>120/80 mmHg:</strong> Normal</li>
+                                        <li class="text-warning"><strong>120-139 / 80-89 mmHg:</strong> Pra-hipertensi</li>
+                                        <li class="text-danger"><strong>>140/90 mmHg:</strong> Hipertensi</li>
                                     </ul>
                                 </div>
                             </div>
@@ -305,6 +307,7 @@
                     </div>
                 </div>
             </div>
+            {{-- kolesterol --}}
             <div class="col-xl-4 col-12">
                 <div class="card">
                     <div class="card-body p-1">
@@ -320,26 +323,78 @@
                             </div>
                             <p class="h2 bold mb-0">100</p>
 
+                            {{-- collapse button --}}
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
                                 data-bs-target="#informasiKolesterol" aria-expanded="false"
                                 aria-controls="informasiKolesterol">
                                 <i class="bi bi-three-dots fs-4"></i>
                             </button>
+
                             <!-- Informasi (Collapse) -->
-                            <div class="collapse" id="informasiKolesterol">
-                                <div class="card card-body">
-                                    <h6>Skala kolesterol</h6>
-                                    <ul>
-                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
-                                    </ul>
+                            <div class="collapse mt-3 pb-3" id="informasiKolesterol">
+                                <div class="card shadow-lg border-0">
+                                    <div class="card-header bg-success text-white d-flex justify-content-center">
+                                        <h5 class="mb-0"><i class="bi bi-info-circle"></i> Informasi Kolesterol</h5>
+                                        {{-- <button class="btn btn-light btn-sm" data-bs-toggle="collapse"
+                                            data-bs-target="#informasiKolesterol">
+                                            <i class="bi bi-x-lg"></i>
+                                        </button> --}}
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="text-success"><i class="bi bi-heart-pulse"></i> Kolesterol Total</h6>
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                                <strong>
+                                                    < 200 mg/dL:</strong> Normal
+                                            </li>
+                                            <li class="list-group-item text-warning"><i
+                                                    class="bi bi-exclamation-circle"></i> <strong>200-239 mg/dL:</strong>
+                                                Borderline High</li>
+                                            <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i>
+                                                <strong>>= 240 mg/dL:</strong> High
+                                            </li>
+                                        </ul>
+
+                                        <h6 class="text-primary"><i class="bi bi-shield-exclamation"></i> Kolesterol Jahat
+                                            (LDL)</h6>
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                                <strong>
+                                                    < 100 mg/dL:</strong> Optimal
+                                            </li>
+                                            <li class="list-group-item text-info"><i class="bi bi-info-circle"></i>
+                                                <strong>100-129 mg/dL:</strong> Near Optimal
+                                            </li>
+                                            <li class="list-group-item text-warning"><i
+                                                    class="bi bi-exclamation-circle"></i> <strong>130-159 mg/dL:</strong>
+                                                Borderline High</li>
+                                            <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i>
+                                                <strong>160-189 mg/dL:</strong> High
+                                            </li>
+                                            <li class="list-group-item text-dark"><i
+                                                    class="bi bi-exclamation-triangle"></i> <strong>>= 190 mg/dL:</strong>
+                                                Very High</li>
+                                        </ul>
+
+                                        <h6 class="text-primary"><i class="bi bi-emoji-smile"></i> Kolesterol Baik (HDL)
+                                        </h6>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-success"><i class="bi bi-gender-male"></i>
+                                                <strong>> 40 mg/dL:</strong> Pria
+                                            </li>
+                                            <li class="list-group-item text-success"><i class="bi bi-gender-female"></i>
+                                                <strong>> 50 mg/dL:</strong> Wanita
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- fungsi ginjal --}}
             <div class="col-xl-4 col-12 mb-3">
                 <div class="card">
                     <div class="card-body p-1">

@@ -68,6 +68,20 @@
                             </div>
                         </div>
 
+                        <!-- Legend di atas chart -->
+                        <div id="chartLegend"
+                            style="display: flex; justify-content: center; gap: 15px; margin-bottom: 10px;">
+                            <div style="display: flex; align-items: center;">
+                                <span
+                                    style="width: 15px; height: 15px; background-color: rgba(75, 192, 192, 0.6); display: inline-block; margin-right: 5px;"></span>
+                                <span>Telah Diminum</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span
+                                    style="width: 15px; height: 15px; background-color: rgba(192, 192, 192, 0.6); display: inline-block; margin-right: 5px;"></span>
+                                <span>Belum diminum</span>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-center">
                             <canvas id="chartKonsumsiAir"></canvas>
                         </div>
@@ -130,10 +144,11 @@
                                     class="btn btn-outline-primary rounded-circle">+</a>
                             </div>
                             {{-- modal add data step --}}
-                            <div class="modal fade" id="modalLangkah" tabindex="-1" aria-labelledby="modalLangkah"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <form action="" method="post">
+                            <form action="{{ route('catatankesehatan.store') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="modalLangkah" tabindex="-1" aria-labelledby="modalLangkah"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="modalLangkah">Jumlah langkah</h5>
@@ -143,7 +158,8 @@
                                             <div class="modal-body">
                                                 <div class="form-floating mb-3">
                                                     <input type="number" class="form-control" id="kadarGulaDarah"
-                                                        placeholder="Masukan kadar gula darah">
+                                                        name="value" placeholder="Masukan kadar gula darah">
+                                                    <input type="text" hidden value="step" name="record_type">
                                                     <label for="kadarGulaDarah">Masukan jumlah langkah...</label>
                                                 </div>
                                             </div>
@@ -151,14 +167,15 @@
                                                 <button type="submit" class="btn btn-primary col-12">Simpan</button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                         <div class="d-flex justify-content-center">
                             <img src="icons/training.png" id="iconLangkah" alt="training">
                             <div class="grid align-content-center">
-                                <h6>0/6000 langkah</h6>
+                                <h6>{{ $totalStepPerDay }}/6000 langkah</h6>
                                 <h6>(kalori terbakar) kkal</h6>
                             </div>
                         </div>
@@ -199,6 +216,7 @@
                     </div>
                 </div>
             </div>
+
             {{-- CHART KADAR GULA DARAH --}}
             <div class="col-xl-6 pt-4">
                 <div class="card shadow-sm">
@@ -270,6 +288,7 @@
                     </div>
                 </div>
             </div>
+
             {{-- CHART HBAC1 --}}
             <div class="col-xl-6 pt-4 mb-3">
                 <div class="card">
@@ -654,11 +673,10 @@
         });
 
         //CHART KONSUMSI AIR
-        // Data dummy untuk grafik donat
-        // Data dummy
-        const drinkValue = 3; // Jumlah gelas yang diminum (contoh: 3)
+        // get data from controller
+        const totalWaterIntakePerDay = @json($totalWaterIntakePerDay);
         const maxValue = 8; // Total maksimum gelas
-        const remainingValue = maxValue - drinkValue; // Sisa gelas
+        const remainingValue = maxValue - totalWaterIntakePerDay; // Sisa gelas
 
         // Tanggal hari ini
         const today = new Date().toLocaleDateString('id-ID', {
@@ -674,9 +692,10 @@
             data: {
                 labels: ['Telah Diminum', 'Sisa'],
                 datasets: [{
-                    data: [drinkValue, remainingValue],
+                    data: [totalWaterIntakePerDay, remainingValue],
                     backgroundColor: [
-                        drinkValue > 0 ? 'rgba(75, 192, 192, 0.6)' : 'rgba(192, 192, 192, 0.6)',
+                        totalWaterIntakePerDay > 0 ? 'rgba(75, 192, 192, 0.6)' :
+                        'rgba(192, 192, 192, 0.6)',
                         remainingValue > 0 ? 'rgba(192, 192, 192, 0.6)' : 'rgba(75, 192, 192, 0.6)'
                     ],
                     borderColor: [

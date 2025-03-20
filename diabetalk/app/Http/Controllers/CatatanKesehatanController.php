@@ -14,17 +14,28 @@ class CatatanKesehatanController extends Controller
      */
     public function index()
     {
-        // water consumption/intake per day
-        $totalWaterIntake = DB::table('health_records')
+        // get water consumption/intake per day
+        $totalWaterIntakePerDay = DB::table('health_records')
             ->where('record_type', 'water_intake')
             ->whereDate('created_at', Carbon::today()) // Filter berdasarkan tanggal hari ini
-            ->sum('value');
+            ->sum('value'); // -> output is float
+
+        // convertion float to integer data type
+        $totalWaterIntakePerDay = intval($totalWaterIntakePerDay);
+
+        // get steps per day
+        $totalStepPerDay = DB::table('health_records')
+            ->where('record_type', 'step')
+            ->whereDate('created_at', Carbon::today())
+            ->sum('value'); // -> output is float
+
+        // convertion
+        $totalStepPerDay = intval($totalStepPerDay);
         
-        dd($totalWaterIntake);
 
         $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
         $sugarLevels = [110, 120, 105];
-        return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));
+        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'totalStepPerDay'));
     }
 
     /**
@@ -59,7 +70,7 @@ class CatatanKesehatanController extends Controller
         }
         $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
         $sugarLevels = [110, 120, 105];
-        return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));
+        return redirect()->route('catatankesehatan.index')->with('');
     }
 
     /**

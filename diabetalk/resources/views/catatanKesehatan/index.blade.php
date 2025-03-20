@@ -1,5 +1,11 @@
 @extends('layouts_user.app')
 @section('content')
+    <style>
+        .list-group-item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+    </style>
     <div class="container p-5">
         <div class="row" style="height: 100px;">
             <div class="col-2 p-1 d-flex justify-content-center" style="height: 100px">
@@ -29,7 +35,8 @@
                                     class="btn btn-outline-primary rounded-circle">+</a>
                                 </a>
                                 {{-- modal add data water consumption --}}
-                                <form action="" method="post">
+                                <form action="{{ route('catatankesehatan.store') }}" method="post">
+                                    @csrf
                                     <div class="modal fade" id="modalKonsumsiAir" tabindex="-1"
                                         aria-labelledby="modalKonsumsiAir" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -42,9 +49,14 @@
                                                 <div class="modal-body">
                                                     <div class="form-floating mb-3">
                                                         <input type="number" class="form-control" id="kadarGulaDarah"
-                                                            placeholder="Masukan kadar gula darah">
+                                                            name="value" placeholder="Masukan kadar gula darah">
+                                                        <input type="text" value="water_intake" name="record_type"
+                                                            hidden>
                                                         <label for="kadarGulaDarah">Masukan jumlah konsumsi air...</label>
                                                     </div>
+                                                    <small class="form-text text-muted">1 angka mewakili air sebanyak 240ml
+                                                        atau 1 gelas.</small>
+
                                                 </div>
                                                 <div class="modal-footer grid">
                                                     <button type="submit" class="btn btn-primary col-12">Simpan</button>
@@ -67,25 +79,39 @@
                             <i class="bi bi-chevron-down fs-5"></i> Informasi Konsumsi Air
                         </button>
 
-                        <!-- Informasi Skala (Collapse) -->
+                        <!-- Informasi Konsumsi Air (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiKonsumsiAir">
-                            <div class="card card-body border-light shadow-sm">
-                                <h6 class="fw-bold mb-3">💧 Rekomendasi Cairan Pasien Diabetes Melitus</h6>
-                                <ul class="list-unstyled">
-                                    <li><i class="bi bi-check-circle-fill text-primary"></i> Perempuan: 30ml/kg Berat badan
-                                    </li>
-                                    <li><i class="bi bi-check-circle-fill text-primary"></i> Laki-laki: 40ml/kg Berat badan
-                                    </li>
-                                    <li class="mt-2">
-                                        <strong>Contoh:</strong> <br> Perempuan dengan berat badan 56kg, maka:
-                                        <ul class="ps-3">
-                                            <li><i class="bi bi-droplet-half"></i> 30ml x 56kg = 1680 ml</li>
-                                            <li><i class="bi bi-cup"></i> Setara dengan 7 gelas/hari</li>
+                            <div class="card shadow-lg border-0">
+                                <div class="card-header bg-primary text-white d-flex justify-content-center">
+                                    <h5 class="mb-0"><i class="bi bi-droplet"></i> Rekomendasi Konsumsi Air</h5>
+
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-primary"><i class="bi bi-info-circle"></i> Rekomendasi Cairan
+                                        untuk Pasien Diabetes Melitus</h6>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item"><i class="bi bi-gender-female text-danger"></i>
+                                            <strong>Perempuan:</strong> 30ml/kg Berat Badan
+                                        </li>
+                                        <li class="list-group-item"><i class="bi bi-gender-male text-primary"></i>
+                                            <strong>Laki-laki:</strong> 40ml/kg Berat Badan
+                                        </li>
+                                    </ul>
+
+                                    <h6 class="fw-bold text-primary"><i class="bi bi-calculator"></i> Contoh Perhitungan
+                                    </h6>
+                                    <div class="alert alert-light border-start border-primary border-4">
+                                        <p class="mb-1"><strong>Perempuan dengan berat badan 56kg:</strong></p>
+                                        <ul class="ps-3 mb-0">
+                                            <li><i class="bi bi-droplet-half"></i> 30ml x 56kg = <strong>1680 ml</strong>
+                                            </li>
+                                            <li><i class="bi bi-cup"></i> Setara dengan <strong>7 gelas/hari</strong></li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -143,18 +169,33 @@
                             <i class="bi bi-chevron-down fs-5"></i> Informasi Aktifitas
                         </button>
 
-                        <!-- Informasi Skala (Collapse) -->
+                        <!-- Informasi Rekomendasi Langkah Harian (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiLangkah">
-                            <div class="card card-body border-light shadow-sm">
-                                <h6 class="fw-bold mb-3">Rekomendasi langkah harian</h6>
-                                <ul>
-                                    <li>Durasi : 30 menit - 1 jam</li>
-                                    <li>Frekuensi : minimal 5x per minggu</li>
-                                    <li>Langkah harian : 7000-10.000 per hari</li>
-                                    </li>
-                                </ul>
+                            <div class="card shadow-lg border-0">
+                                <div class="card-header bg-success text-white d-flex justify-content-center">
+                                    <h5 class="mb-0"><i class="bi bi-walking"></i> Rekomendasi Langkah Harian</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-success"><i class="bi bi-clock"></i> Durasi</h6>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item"><i class="bi bi-stopwatch"></i> 30 menit - 1 jam</li>
+                                    </ul>
+
+                                    <h6 class="fw-bold text-success"><i class="bi bi-calendar-check"></i> Frekuensi</h6>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item"><i class="bi bi-calendar-week"></i> Minimal 5x per
+                                            minggu</li>
+                                    </ul>
+
+                                    <h6 class="fw-bold text-success"><i class="bi bi-footsteps"></i> Langkah Harian</h6>
+                                    <div class="alert alert-light border-start border-success border-4">
+                                        <p class="mb-0"><i class="bi bi-graph-up"></i> <strong>7000 - 10.000 langkah per
+                                                hari</strong></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -183,7 +224,7 @@
 
                         <!-- Informasi Skala (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiSkalaGulaDarah">
-                            <div class="card shadow-sm">
+                            <div class="card shadow-lg">
                                 <div
                                     class="card-header bg-primary text-white d-flex align-items-center justify-content-center">
                                     <h5 class="mb-0"><i class="bi bi-info-circle"></i> Skala Kadar Gula Darah</h5>
@@ -249,18 +290,32 @@
                             data-bs-target="#informasiHbAc1" aria-expanded="false" aria-controls="informasiHbAc1">
                             <i class="bi bi-chevron-down fs-5"></i> Informasi kadar HbA1c
                         </button>
-                        <!-- Informasi Skala (Collapse) -->
+                        <!-- Informasi HbA1c (Collapse) -->
                         <div class="collapse mt-3 pb-3" id="informasiHbAc1">
-                            <div class="card card-body">
-                                <h6>Kadar HbA1c untuk penderita diabetes melitus</h6>
-                                <ul>
-                                    <li class="text-success"><strong>
-                                            < 5,7%:</strong> Normal</li>
-                                    <li class="text-warning"><strong> 5,7% - 6,4%: </strong> Pra-diabetes</li>
-                                    <li class="text-danger"><strong>>6,4%:</strong> Diabetes</li>
-                                </ul>
+                            <div class="card shadow-lg border-0">
+                                <div class="card-header bg-danger text-white d-flex justify-content-center">
+                                    <h5 class="mb-0"><i class="bi bi-heart-pulse"></i> Kadar HbA1c untuk Diabetes</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-danger"><i class="bi bi-clipboard-pulse"></i> Kategori HbA1c
+                                    </h6>
+                                    <ul class="list-group">
+                                        <li class="list-group-item text-success">
+                                            <i class="bi bi-check-circle-fill"></i> <strong>
+                                                < 5,7%:</strong> Normal
+                                        </li>
+                                        <li class="list-group-item text-warning">
+                                            <i class="bi bi-exclamation-circle-fill"></i> <strong>5,7% - 6,4%:</strong>
+                                            Pra-diabetes
+                                        </li>
+                                        <li class="list-group-item text-danger">
+                                            <i class="bi bi-x-circle-fill"></i> <strong>> 6,4%:</strong> Diabetes
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -292,17 +347,34 @@
                                 <i class="bi bi-three-dots fs-4"></i>
                             </button>
 
-                            <!-- Informasi (Collapse) -->
-                            <div class="collapse" id="informasiTekananDarah">
-                                <div class="card card-body">
-                                    <h6>Skala tekanan darah</h6>
-                                    <ul>
-                                        <li class="text-success"><strong>120/80 mmHg:</strong> Normal</li>
-                                        <li class="text-warning"><strong>120-139 / 80-89 mmHg:</strong> Pra-hipertensi</li>
-                                        <li class="text-danger"><strong>>140/90 mmHg:</strong> Hipertensi</li>
-                                    </ul>
+                            <!-- Informasi Tekanan Darah (Collapse) -->
+                            <div class="collapse mt-3 pb-3" id="informasiTekananDarah">
+                                <div class="card shadow-lg border-0">
+                                    <div class="card-header bg-primary text-white d-flex justify-content-center">
+                                        <h5 class="mb-0"><i class="bi bi-heart"></i> Skala Tekanan Darah</h5>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="fw-bold text-primary"><i class="bi bi-bar-chart"></i> Kategori Tekanan
+                                            Darah</h6>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-success">
+                                                <i class="bi bi-check-circle-fill"></i> <strong>120/80 mmHg:</strong>
+                                                Normal
+                                            </li>
+                                            <li class="list-group-item text-warning">
+                                                <i class="bi bi-exclamation-circle-fill"></i> <strong>120-139 / 80-89
+                                                    mmHg:</strong> Pra-hipertensi
+                                            </li>
+                                            <li class="list-group-item text-danger">
+                                                <i class="bi bi-x-circle-fill"></i> <strong>>140/90 mmHg:</strong>
+                                                Hipertensi
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -415,17 +487,46 @@
                                 aria-controls="informasiFungsiGinjal">
                                 <i class="bi bi-three-dots fs-4"></i>
                             </button>
-                            <!-- Informasi (Collapse) -->
-                            <div class="collapse" id="informasiFungsiGinjal">
-                                <div class="card card-body">
-                                    <h6>Skala tekanan darah</h6>
-                                    <ul>
-                                        <li class="text-success"><strong>70-99 mg/dL:</strong> Normal</li>
-                                        <li class="text-warning"><strong>100-125 mg/dL:</strong> Pra-diabetes</li>
-                                        <li class="text-danger"><strong>>125 mg/dL:</strong> Diabetes</li>
-                                    </ul>
+                            <!-- Informasi Fungsi Ginjal (Collapse) -->
+                            <div class="collapse mt-3 pb-3" id="informasiFungsiGinjal">
+                                <div class="card shadow-lg border-0">
+                                    <div class="card-header bg-info text-white d-flex justify-content-center">
+                                        <h5 class="mb-0"><i class="bi bi-info-circle"></i> Informasi Fungsi Ginjal</h5>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="text-primary"><i class="bi bi-droplet"></i> Kreatinin</h6>
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                                <strong>0,6-1,2 mg/dL:</strong> Normal
+                                            </li>
+                                        </ul>
+
+                                        <h6 class="text-primary"><i class="bi bi-water"></i> Urea Darah (BUN)</h6>
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                                <strong>7-20 mg/dL:</strong> Normal
+                                            </li>
+                                        </ul>
+
+                                        <h6 class="text-primary"><i class="bi bi-diagram-3"></i> Rasio Albumin/Kreatinin
+                                            (ACR)</h6>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-success"><i class="bi bi-check-circle"></i>
+                                                <strong>
+                                                    < 30 mg/g:</strong> Normal
+                                            </li>
+                                            <li class="list-group-item text-warning"><i
+                                                    class="bi bi-exclamation-circle"></i> <strong>30-300 mg/g:</strong>
+                                                Menunjukkan mikroalbuminuria</li>
+                                            <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i>
+                                                <strong>> 300 mg/g:</strong> Menunjukkan makroalbuminuria
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

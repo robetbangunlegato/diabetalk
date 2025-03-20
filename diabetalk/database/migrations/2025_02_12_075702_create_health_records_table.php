@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('health_records', function (Blueprint $table) {
             $table->id();
             $table->string('record_type');
-            $table->integer('value');
+            $table->string('value');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\health_record;
+use Illuminate\Support\Facades\DB;
 
 class CatatanKesehatanController extends Controller
 {
@@ -13,7 +14,14 @@ class CatatanKesehatanController extends Controller
      */
     public function index()
     {
-        //
+        // water consumption/intake per day
+        $totalWaterIntake = DB::table('health_records')
+            ->where('record_type', 'water_intake')
+            ->whereDate('created_at', Carbon::today()) // Filter berdasarkan tanggal hari ini
+            ->sum('value');
+        
+        dd($totalWaterIntake);
+
         $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
         $sugarLevels = [110, 120, 105];
         return view('catatanKesehatan.index', compact('dates', 'sugarLevels'));

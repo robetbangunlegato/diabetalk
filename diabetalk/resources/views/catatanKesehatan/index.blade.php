@@ -151,16 +151,39 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalLangkah">Jumlah langkah</h5>
+                                                <h5 class="modal-title" id="modalLangkah">Jumlah Langkah</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-floating mb-3">
-                                                    <input type="number" class="form-control" id="kadarGulaDarah"
-                                                        name="value" placeholder="Masukan kadar gula darah">
-                                                    <input type="text" hidden value="step" name="record_type">
-                                                    <label for="kadarGulaDarah">Masukan jumlah langkah...</label>
+                                                    <input type="number" class="form-control" id="jumlahLangkah"
+                                                        name="value" placeholder="Masukan jumlah langkah" required>
+                                                    <input type="hidden" value="step" name="record_type">
+                                                    <label for="jumlahLangkah">Masukan jumlah langkah...</label>
+                                                </div>
+
+                                                <label class="form-label">Pilih Intensitas Berjalan:</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="met_level"
+                                                        id="metSantai" value="3.5" required>
+                                                    <label class="form-check-label" for="metSantai">
+                                                        Berjalan Santai (3-4 km/jam) - 3.5 MET
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="met_level"
+                                                        id="metSedang" value="4">
+                                                    <label class="form-check-label" for="metSedang">
+                                                        Berjalan Sedang (4-5 km/jam) - 4.0 MET
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="met_level"
+                                                        id="metCepat" value="5">
+                                                    <label class="form-check-label" for="metCepat">
+                                                        Berjalan Cepat (5-6 km/jam) - 5.0 MET
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer grid">
@@ -171,11 +194,12 @@
                                 </div>
                             </form>
 
+
                         </div>
                         <div class="d-flex justify-content-center">
                             <img src="icons/training.png" id="iconLangkah" alt="training">
                             <div class="grid align-content-center">
-                                <h6>{{ $totalStepPerDay }}/6000 langkah</h6>
+                                <h6>{{ $activityChartData->totalStepPerDay }}/6000 langkah</h6>
                                 <h6>(kalori terbakar) kkal</h6>
                             </div>
                         </div>

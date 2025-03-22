@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\health_record;
+use App\Models\blood_sugar;
 use Illuminate\Support\Facades\DB;
 
 class CatatanKesehatanController extends Controller
@@ -13,7 +14,11 @@ class CatatanKesehatanController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        // get user id
+        $user_id = auth()->user()->id;
+
+        // water consumption chart
         // get water consumption/intake per day
         $totalWaterIntakePerDay = DB::table('health_records')
             ->where('record_type', 'water_intake')
@@ -22,40 +27,39 @@ class CatatanKesehatanController extends Controller
 
         // convertion float to integer data type
         $totalWaterIntakePerDay = intval($totalWaterIntakePerDay);
-
-        // get steps per day
-        // $totalStepPerDay = DB::table('health_records')
-        //     ->where('record_type', 'step')
-        //     ->whereDate('created_at', Carbon::today())
-        //     ->sum('value'); // -> output is float
-
-        // convertion
-        // $totalStepPerDay = intval($totalStepPerDay);
         
         // activity chart
-        $tanggalHariIni = Carbon::now()->toDateString();
-        $activityChartData = DB::table('health_records')
-            ->join('users', 'health_records.user_id', '=', 'users.id')
+        $activityChartData = DB::table('activities')
+            ->join('users', 'activities.user_id', '=', 'users.id')
             ->join('data_personals', 'users.id', '=', 'data_personals.user_id')
+            ->where('activities.user_id', $user_id)
             ->selectRaw("
-                SUM((CAST(health_records.other AS DECIMAL) * 3.5 * data_personals.weight / 200) * CAST(health_records.value AS DECIMAL)) as calories_burned,
-                SUM(CAST(health_records.value AS DECIMAL)) as totalStepPerDay")
-            ->where('health_records.record_type', 'step')
-            ->whereDate('health_records.created_at', $tanggalHariIni)
+                SUM(activities.MET * data_personals.weight * activities.duration) as caloriesBurned,
+                SUM(activities.step) as totalStepPerDay")
+            ->whereDate('activities.created_at', Carbon::today())
             ->first();
-        dd($activityChartData);
 
-        $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
-        $sugarLevels = [110, 120, 105];
+        // blood sugar chart
+        // Ambil 3 hari terakhir
+        $dates = collect([
+            Carbon::today()->subDays(2)->toDateString(),
+            Carbon::yesterday()->toDateString(),
+            Carbon::today()->toDateString(),
+        ]);
+
+        // Ambil data terbaru per tanggal menggunakan subquery
+        $gulaDarahData = DB::table('blood_sugars as gd1')
+            ->select('gd1.blood_sugar', DB::raw('DATE(gd1.created_at) as date'))
+            ->whereIn(DB::raw('DATE(gd1.created_at)'), $dates)
+            ->whereRaw('gd1.created_at = (SELECT MAX(gd2.created_at) FROM blood_sugars as gd2 WHERE DATE(gd2.created_at) = DATE(gd1.created_at))')
+            ->get()
+            ->keyBy('date');
+
+        // Pastikan setiap tanggal memiliki nilai, jika tidak ada set 0
+        $sugarLevels = $dates->map(function ($date) use ($gulaDarahData) {
+            return $gulaDarahData[$date]->blood_sugar ?? null;
+        });
         return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -87,35 +91,16 @@ class CatatanKesehatanController extends Controller
         return redirect()->route('catatankesehatan.index')->with('');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function bloodSugarStore(Request $request){
+        $validate = $request->validate([
+            'blood_sugar' => 'required'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $blood_sugars = new blood_sugar();
+        $blood_sugars->blood_sugar = $validate['blood_sugar'];
+        $blood_sugars->user_id = auth()->user()->id;
+        $blood_sugars->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('catatankesehatan.index');
     }
 }

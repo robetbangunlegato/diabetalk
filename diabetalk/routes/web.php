@@ -1,16 +1,17 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\data_personal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DiabetalkingController;
 use App\Http\Controllers\PengingatObatController;
 use App\Http\Controllers\TanyaDiabetalkController;
 use App\Http\Controllers\CatatanKesehatanController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DietDanIntakeZatGiziController;
-use Illuminate\Http\Request;
-use App\Models\data_personal;
-use App\Models\User;
 
 Route::get('/', function(){
     return view('landing_page_1');
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengingatobat', PengingatObatController::class);
     Route::resource('diabetalking', DiabetalkingController::class);
     Route::resource('tanyadiabetalk', TanyaDiabetalkController::class);
+    // health record route list
+    Route::post('activity', [ActivityController::class, 'store'])->name('activity.store');
+    Route::post('bloodsugar', [CatatanKesehatanController::class, 'bloodSugarStore'])->name('bloodsugar.store');
     Route::get('intro_page_1', function () {
         return view('introPage.intro_page_1');
     })->name('intro_page_1');

@@ -144,7 +144,7 @@
                                     class="btn btn-outline-primary rounded-circle">+</a>
                             </div>
                             {{-- modal add data step --}}
-                            <form action="{{ route('catatankesehatan.store') }}" method="post">
+                            <form action="{{ route('activity.store') }}" method="post">
                                 @csrf
                                 <div class="modal fade" id="modalLangkah" tabindex="-1" aria-labelledby="modalLangkah"
                                     aria-hidden="true">
@@ -158,9 +158,14 @@
                                             <div class="modal-body">
                                                 <div class="form-floating mb-3">
                                                     <input type="number" class="form-control" id="jumlahLangkah"
-                                                        name="value" placeholder="Masukan jumlah langkah" required>
-                                                    <input type="hidden" value="step" name="record_type">
+                                                        name="step" placeholder="Masukan jumlah langkah" required>
                                                     <label for="jumlahLangkah">Masukan jumlah langkah...</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" step="0.1" class="form-control"
+                                                        id="jumlahLangkah" name="duration"
+                                                        placeholder="Masukan jumlah langkah" required>
+                                                    <label for="jumlahLangkah">Masukan durasi (dalam jam)...</label>
                                                 </div>
 
                                                 <label class="form-label">Pilih Intensitas Berjalan:</label>
@@ -199,8 +204,8 @@
                         <div class="d-flex justify-content-center">
                             <img src="icons/training.png" id="iconLangkah" alt="training">
                             <div class="grid align-content-center">
-                                <h6>{{ $activityChartData->totalStepPerDay }}/6000 langkah</h6>
-                                <h6>(kalori terbakar) kkal</h6>
+                                <h6>{{ $activityChartData->totalStepPerDay ?? 0 }}/6000 langkah</h6>
+                                <h6>{{ number_format($activityChartData->caloriesBurned, 0) }} kkal kalori terbakar</h6>
                             </div>
                         </div>
 
@@ -254,6 +259,32 @@
                                     class="btn btn-outline-primary rounded-circle">+</a>
                             </div>
                         </div>
+                        {{-- modal kadar gula darah --}}
+                        <form action="{{ route('bloodsugar.store') }}" method="post">
+                            @csrf
+                            <div class="modal fade" id="modalKadarGulaDarah" tabindex="-1"
+                                aria-labelledby="modalKadarGulaDarah" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalKadarGulaDarah">Kadar gula darah </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" name="blood_sugar"
+                                                    id="kadarGulaDarah" placeholder="Masukan kadar gula darah" required>
+                                                <label for="kadarGulaDarah">Masukan kadar gula darah...</label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer grid">
+                                            <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <canvas id="chartKadarGulaDarah" width="400" height="200">
                         </canvas>
 

@@ -408,12 +408,44 @@
                                     <p class="m-0">Tekanan darah</p>
                                 </div>
                                 <div class="col-2">
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalTekananDarah"
                                         class="btn pt-0"><i class="bi bi-plus"></i></a>
                                 </div>
+                                {{-- modal --}}
+                                <form action="{{ route('bloodpressure.store') }}" method="post">
+                                    @csrf
+                                    <div class="modal fade" id="modalTekananDarah" tabindex="-1"
+                                        aria-labelledby="modalTekananDarah" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTekananDarah">Tekanan darah</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <div class="d-flex">
+                                                            <input type="number" class="form-control"
+                                                                id="kadarGulaDarah" name="sistolik"
+                                                                placeholder="sistolik..." required>
+                                                            /
+                                                            <input type="number" class="form-control"
+                                                                id="kadarGulaDarah" name="diastolik"
+                                                                placeholder="diastolik..." required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer grid">
+                                                    <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-
-                            <p class="h2 bold mb-0">100</p>
+                            <p class="h2 bold mb-0">
+                                {{ $bloodPressuresData->sistolik ?? '-' }}/{{ $bloodPressuresData->diastolik ?? '-' }}</p>
                             {{-- Button collapse --}}
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
                                 data-bs-target="#informasiTekananDarah" aria-expanded="false"

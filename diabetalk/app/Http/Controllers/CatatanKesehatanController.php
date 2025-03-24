@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\health_record;
 use App\Models\blood_sugar;
+use App\Models\blood_pressure;
+
 use Illuminate\Support\Facades\DB;
 
 class CatatanKesehatanController extends Controller
@@ -62,14 +64,28 @@ class CatatanKesehatanController extends Controller
         });
 
         // HbA1c level chart
-        $HbA1cChartData = DB::table('blood_sugars')
-        ->select('blood_sugars.blood_sugar')
-        ->where('user_id', $user_id)
-        ->selectRaw('(AVG(blood_sugars.blood_sugar) + 46.7) / 28.7  as averageBloodSugarPerDay')
-        ->get();
+        // Ambil rata-rata kadar gula darah per tanggal
+        $HbAc1 = DB::table('blood_sugars')
+            ->selectRaw('DATE(created_at) as date, (AVG(blood_sugar) + 46.7) / 28.7 as averageBloodSugarPerDay')
+            ->where('user_id', $user_id)
+            ->whereIn(DB::raw('DATE(created_at)'), $dates)
+            ->groupBy('date')
+            ->get()
+            ->keyBy('date');
 
-        dd($HbA1cChartData);
-        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData', 'HbA1cChartData'));
+        // Pastikan setiap tanggal memiliki nilai, jika tidak ada set null
+        $HbA1cChartData = $dates->mapWithKeys(function ($date) use ($HbAc1) {
+            return [$date => $HbAc1[$date]->averageBloodSugarPerDay ?? null];
+        });
+
+        // blood pressure
+        $bloodPressuresData = DB::table('blood_pressures')
+        ->where('user_id', $user_id)
+        ->first();
+
+
+        // dd($HbA1cChartData);
+        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData', 'HbA1cChartData', 'bloodPressuresData'));
     }
 
     /**
@@ -111,6 +127,19 @@ class CatatanKesehatanController extends Controller
         $blood_sugars->user_id = auth()->user()->id;
         $blood_sugars->save();
 
+        return redirect()->route('catatankesehatan.index');
+    }
+    
+    public function bloodPressureStore(Request $request){
+        $validate = $request->validate([
+            'sistolik' => 'required',
+            'diastolik' => 'required'
+        ]);
+        $blood_pressures = new blood_pressure();
+        $blood_pressures->sistolik = $validate['sistolik'];
+        $blood_pressures->diastolik = $validate['diastolik'];
+        $blood_pressures->user_id = auth()->user()->id;
+        $blood_pressures->save();
         return redirect()->route('catatankesehatan.index');
     }
 }

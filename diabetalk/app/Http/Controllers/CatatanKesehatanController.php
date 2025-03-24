@@ -50,16 +50,26 @@ class CatatanKesehatanController extends Controller
         // Ambil data terbaru per tanggal menggunakan subquery
         $gulaDarahData = DB::table('blood_sugars as gd1')
             ->select('gd1.blood_sugar', DB::raw('DATE(gd1.created_at) as date'))
+            ->where('user_id', $user_id)
             ->whereIn(DB::raw('DATE(gd1.created_at)'), $dates)
             ->whereRaw('gd1.created_at = (SELECT MAX(gd2.created_at) FROM blood_sugars as gd2 WHERE DATE(gd2.created_at) = DATE(gd1.created_at))')
             ->get()
             ->keyBy('date');
 
-        // Pastikan setiap tanggal memiliki nilai, jika tidak ada set 0
+        // Pastikan setiap tanggal memiliki nilai, jika tidak ada set null
         $sugarLevels = $dates->map(function ($date) use ($gulaDarahData) {
             return $gulaDarahData[$date]->blood_sugar ?? null;
         });
-        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData'));
+
+        // HbA1c level chart
+        $HbA1cChartData = DB::table('blood_sugars')
+        ->select('blood_sugars.blood_sugar')
+        ->where('user_id', $user_id)
+        ->selectRaw('(AVG(blood_sugars.blood_sugar) + 46.7) / 28.7  as averageBloodSugarPerDay')
+        ->get();
+
+        dd($HbA1cChartData);
+        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData', 'HbA1cChartData'));
     }
 
     /**

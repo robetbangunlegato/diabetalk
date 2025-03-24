@@ -679,15 +679,15 @@
 
         // CHART HbAc1
         // Data dummy kadar HbA1c
-        const months = ['January', 'February', 'March', 'April', 'May'];
-        const hba1cLevels = [5.4, 5.8, 6.2, 6.5, 7.0]; // Nilai dummy
+        // const months = ['January', 'February', 'March', 'April', 'May'];
+        const hba1cLevels = @json($HbA1cChartData); // Nilai dummy
 
         // Konfigurasi Chart.js
         const chartHbAc1 = document.getElementById('chartHbAc1').getContext('2d');
         new Chart(chartHbAc1, {
             type: 'bar',
             data: {
-                labels: months, // Label pada sumbu X
+                labels: dates, // Label pada sumbu X
                 datasets: [{
                     label: 'HbA1c (%)',
                     data: hba1cLevels, // Data kadar HbA1c
@@ -720,7 +720,7 @@
                     x: {
                         title: {
                             display: true,
-                            text: 'Month'
+                            text: 'Tanggal'
                         }
                     }
                 }

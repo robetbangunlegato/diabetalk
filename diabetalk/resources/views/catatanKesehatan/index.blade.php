@@ -444,8 +444,13 @@
                                     </div>
                                 </form>
                             </div>
-                            <p class="h2 bold mb-0">
-                                {{ $bloodPressuresData->sistolik ?? '-' }}/{{ $bloodPressuresData->diastolik ?? '-' }}</p>
+                            <p class="h2 bold mb-0" id="bloodPressure">
+                                {{ $bloodPressuresData->sistolik ?? '-' }}/{{ $bloodPressuresData->diastolik ?? '-' }}
+                            </p>
+                            <label for="bloodPressure" class="text-muted"><i class="bi bi-clock-history"></i>
+                                {{ $bloodPressuresData && $bloodPressuresData->created_at ? \Carbon\Carbon::parse($bloodPressuresData->created_at)->format('d F Y') : '-' }}
+
+                            </label>
                             {{-- Button collapse --}}
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
                                 data-bs-target="#informasiTekananDarah" aria-expanded="false"
@@ -495,11 +500,43 @@
                                     <p class="m-0">Kolesterol</p>
                                 </div>
                                 <div class="col-2">
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKolesterol"
                                         class="btn pt-0"><i class="bi bi-plus"></i></a>
                                 </div>
                             </div>
-                            <p class="h2 bold mb-0">100</p>
+                            {{-- modal --}}
+                            <form action="{{ route('cholesterol.store') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="modalKolesterol" tabindex="-1"
+                                    aria-labelledby="modalKolesterol" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalKolesterol">Kolesterol</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" class="form-control" id="kolesterol"
+                                                        name="cholesterol" placeholder="Masukan kolesterol" required>
+                                                    <label for="kolesterol">Masukan kolesterol...</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer grid">
+                                                <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="h2 bold mb-0">{{ $cholesterolsData->cholesterol ?? '-' }}</p>
+                            <label for="bloodPressure" class="text-muted"><i class="bi bi-clock-history"></i>
+                                {{ $cholesterolsData && $cholesterolsData->created_at ? \Carbon\Carbon::parse($cholesterolsData->created_at)->format('d F Y') : '-' }}
+
+
+                            </label>
+
 
                             {{-- collapse button --}}
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
@@ -573,7 +610,7 @@
                 </div>
             </div>
             {{-- fungsi ginjal --}}
-            <div class="col-xl-4 col-12 mb-3">
+            <div class="col-xl-4 col-12">
                 <div class="card">
                     <div class="card-body p-1">
                         <div class="grid">
@@ -582,11 +619,42 @@
                                     <p class="m-0">Fungsi ginjal</p>
                                 </div>
                                 <div class="col-2">
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalFunsiGinjal"
                                         class="btn pt-0"><i class="bi bi-plus"></i></a>
                                 </div>
                             </div>
-                            <p class="h2 bold mb-0">100</p>
+                            <form action="{{ route('kidneyfunction.store') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="modalFunsiGinjal" tabindex="-1"
+                                    aria-labelledby="modalFunsiGinjal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalFunsiGinjal">Fungsi ginjal</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" class="form-control" id="kidneyFunction"
+                                                        name="kidney_function" placeholder="Masukan kadar gula darah"
+                                                        required>
+                                                    <label for="kidneyFunction">Masukan data fungsi ginjal...</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer grid">
+                                                <button type="submit" class="btn btn-primary col-12">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="h2 bold mb-0">{{ $kidneyFunctionData->kidney_function ?? '-' }}</p>
+                            <label for="bloodPressure" class="text-muted"><i class="bi bi-clock-history"></i>
+                                {{ $kidneyFunctionData && $kidneyFunctionData->created_at ? \Carbon\Carbon::parse($kidneyFunctionData->created_at)->format('d F Y') : '-' }}
+
+
+                            </label>
 
                             <button class="btn btn-outline-white p-0 border-0 col-12" data-bs-toggle="collapse"
                                 data-bs-target="#informasiFungsiGinjal" aria-expanded="false"
@@ -623,8 +691,10 @@
                                                     < 30 mg/g:</strong> Normal
                                             </li>
                                             <li class="list-group-item text-warning"><i
-                                                    class="bi bi-exclamation-circle"></i> <strong>30-300 mg/g:</strong>
-                                                Menunjukkan mikroalbuminuria</li>
+                                                    class="bi bi-exclamation-circle"></i>
+                                                <strong>30-300 mg/g:</strong>
+                                                Menunjukkan mikroalbuminuria
+                                            </li>
                                             <li class="list-group-item text-danger"><i class="bi bi-x-circle"></i>
                                                 <strong>> 300 mg/g:</strong> Menunjukkan makroalbuminuria
                                             </li>
@@ -638,6 +708,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     {{-- modal kadar gula darah --}}
     <div class="modal fade" id="modalKadarGulaDarah" tabindex="-1" aria-labelledby="modalKadarGulaDarah"

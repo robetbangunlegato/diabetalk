@@ -11,7 +11,7 @@
         </div>
         <div class="row text-center g-3">
             <div class="col-12">
-                <p class="lead">hai nama_pengguna! apa ada yang bisa diabetalk bantu?</p>
+                <p class="lead">hai {{ auth()->user()->name }}! apa ada yang bisa diabetalk bantu?</p>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <a href="http://"

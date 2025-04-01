@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use App\Models\health_record;
 use App\Models\blood_sugar;
 use App\Models\blood_pressure;
+use App\Models\cholesterol;
+use App\Models\kidney_function;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -81,11 +84,32 @@ class CatatanKesehatanController extends Controller
         // blood pressure
         $bloodPressuresData = DB::table('blood_pressures')
         ->where('user_id', $user_id)
+        ->latest('created_at')
         ->first();
 
+        // cholesterol
+        $cholesterolsData = DB::table('cholesterols')
+        ->where('user_id', $user_id)
+        ->latest('created_at')
+        ->first();
 
-        // dd($HbA1cChartData);
-        return view('catatanKesehatan.index', compact('dates', 'sugarLevels', 'totalWaterIntakePerDay', 'activityChartData', 'HbA1cChartData', 'bloodPressuresData'));
+        // kidney function
+        $kidneyFunctionData = DB::table('kidney_functions')
+        ->where('user_id', $user_id)
+        ->latest('created_at')
+        ->first();
+
+        return view('catatanKesehatan.index', 
+        compact([
+        'dates', 
+        'sugarLevels',
+        'totalWaterIntakePerDay', 
+        'activityChartData', 
+        'HbA1cChartData', 
+        'bloodPressuresData',
+        'cholesterolsData',
+        'kidneyFunctionData'
+        ]));
     }
 
     /**
@@ -141,5 +165,34 @@ class CatatanKesehatanController extends Controller
         $blood_pressures->user_id = auth()->user()->id;
         $blood_pressures->save();
         return redirect()->route('catatankesehatan.index');
+    }
+
+    public function cholesterolStore(Request $request){
+        $validate = $request->validate([
+            'cholesterol' => 'required'
+        ]);
+        $cholesterols = new cholesterol();
+        $cholesterols->cholesterol = $validate['cholesterol'];
+        $cholesterols->user_id = auth()->user()->id;
+        $cholesterols->save();
+
+        return redirect()->route('catatankesehatan.index');
+    }
+
+    public function kidneyFunctionStore(Request $request){
+        $validate = $request->validate([
+            'kidney_function' => 'required'
+        ]);
+
+        // dd($validate);  
+
+        $kidney_functions = new kidney_function();
+        $kidney_functions->kidney_function = $validate['kidney_function'];
+        $kidney_functions->user_id = auth()->user()->id;
+        $kidney_functions->save();
+
+        return redirect()->route('catatankesehatan.index');
+
+
     }
 }

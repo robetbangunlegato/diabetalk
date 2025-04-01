@@ -44,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::post('activity', [ActivityController::class, 'store'])->name('activity.store');
     Route::post('bloodsugar', [CatatanKesehatanController::class, 'bloodSugarStore'])->name('bloodsugar.store');
     Route::post('bloodpressure', [CatatanKesehatanController::class, 'bloodPressureStore'])->name('bloodpressure.store');
+    Route::post('cholesterol', [CatatanKesehatanController::class, 'cholesterolStore'])->name('cholesterol.store');
+    Route::post('kidneyfunction', [CatatanKesehatanController::class, 'kidneyFunctionStore'])->name('kidneyfunction.store');
+
+
 
     Route::get('intro_page_1', function () {
         return view('introPage.intro_page_1');

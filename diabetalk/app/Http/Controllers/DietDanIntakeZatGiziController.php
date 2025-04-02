@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\food_category;
+use App\Models\food;
+
 
 class DietDanIntakeZatGiziController extends Controller
 {
@@ -15,51 +18,45 @@ class DietDanIntakeZatGiziController extends Controller
         return view('dietDanIntakeZatGizi.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function listFoodCategoryIndex(){
+        $food_categories = food_category::all();
+        return view('dietDanIntakeZatGizi.listFoodCategoryIndex', compact('food_categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function listFoodCategoryCreate(){
+        return view('dietDanIntakeZatGizi.listFoodCategoryCreate');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function listFoodCategoryStore(Request $request){
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
+        $categories = new food_category();
+        $categories->category_name  = $validate['name'];
+        $categories->save();
+        return redirect()->route('listfood.index')->with('success', 'Kategori berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function listFoodCategoryDestroy(string $id){
+        $categories = food_category::find($id);
+        $categories->delete();
+        return redirect()->route('listfoodcategory.index')->with('success', 'Kategori berhasil dihapus!');
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+
+
+    public function listFoodIndex(){
+        $foods = food::all();
+        return view('dietDanIntakeZatGizi.listFoodIndex', compact('foods'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function listFoodCreate(Request $reqest){
+        $validate = $request->validate([
+            'name' => 'required',
+            'calories' => 'required|number',
+        ]);
+
+
     }
 }

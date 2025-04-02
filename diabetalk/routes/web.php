@@ -47,6 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::post('cholesterol', [CatatanKesehatanController::class, 'cholesterolStore'])->name('cholesterol.store');
     Route::post('kidneyfunction', [CatatanKesehatanController::class, 'kidneyFunctionStore'])->name('kidneyfunction.store');
 
+    // diet and nutrient intake route list
+    Route::get('listfoodindex', [DietDanIntakeZatGiziController::class, 'listFoodIndex'])->name('listfood.index');
+    Route::get('listfoodcategorycreate', [DietDanIntakeZatGiziController::class, 'listFoodCategoryCreate'])->name('listfoodcategory.create');
+    Route::post('listfoodcategorystore', [DietDanIntakeZatGiziController::class, 'listFoodCategoryStore'])->name('listfoodcategory.store');
+    Route::get('listfoodcategoryindex', [DietDanIntakeZatGiziController::class, 'listFoodCategoryIndex'])->name('listfoodcategory.index');
+    Route::delete('listfoodcategorydestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryDestroy'])->name('listfoodcategory.destroy');
+
+
 
 
     Route::get('intro_page_1', function () {

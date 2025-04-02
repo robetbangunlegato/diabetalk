@@ -49,9 +49,17 @@ Route::middleware('auth')->group(function () {
 
     // diet and nutrient intake route list
     Route::get('listfoodindex', [DietDanIntakeZatGiziController::class, 'listFoodIndex'])->name('listfood.index');
+    Route::get('listfoodcreate', [DietDanIntakeZatGiziController::class, 'listFoodCreate'])->name('listfood.create');
+    Route::post('listfoodstore', [DietDanIntakeZatGiziController::class, 'listFoodStore'])->name('listfood.store');
+    Route::get('listfoodedit{id}', [DietDanIntakeZatGiziController::class, 'listFoodEdit'])->name('listfood.edit');
+    Route::put('listfoodupdate{id}', [DietDanIntakeZatGiziController::class, 'listFoodUpdate'])->name('listfood.update');
+    Route::get('listfooddestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodDestroy'])->name('listfood.destroy');
+    
     Route::get('listfoodcategorycreate', [DietDanIntakeZatGiziController::class, 'listFoodCategoryCreate'])->name('listfoodcategory.create');
     Route::post('listfoodcategorystore', [DietDanIntakeZatGiziController::class, 'listFoodCategoryStore'])->name('listfoodcategory.store');
     Route::get('listfoodcategoryindex', [DietDanIntakeZatGiziController::class, 'listFoodCategoryIndex'])->name('listfoodcategory.index');
+    Route::get('listfoodcategoryedit{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryEdit'])->name('listfoodcategory.edit');
+    Route::put('listfoodcategoryupdate{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryUpdate'])->name('listfoodcategory.update');
     Route::delete('listfoodcategorydestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryDestroy'])->name('listfoodcategory.destroy');
 
 

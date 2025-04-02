@@ -34,9 +34,23 @@ class DietDanIntakeZatGiziController extends Controller
         $categories = new food_category();
         $categories->category_name  = $validate['name'];
         $categories->save();
-        return redirect()->route('listfood.index')->with('success', 'Kategori berhasil ditambahkan!');
+        return redirect()->route('listfoodcategory.index')->with('success', 'Kategori berhasil ditambahkan!');
     }
 
+    public function listFoodCategoryEdit(string $id){
+        $category = food_category::find($id);
+        return view('dietDanIntakeZatGizi.listFoodCategoryEdit', compact('category'));
+    }
+
+    public function listFoodCategoryUpdate(Request $request, string $id){
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
+        $categories = food_category::find($id);
+        $categories->category_name  = $validate['name'];
+        $categories->update();
+        return redirect()->route('listfoodcategory.index')->with('success', 'Kategori berhasil diubah!');
+    }
     public function listFoodCategoryDestroy(string $id){
         $categories = food_category::find($id);
         $categories->delete();
@@ -51,12 +65,22 @@ class DietDanIntakeZatGiziController extends Controller
         return view('dietDanIntakeZatGizi.listFoodIndex', compact('foods'));
     }
 
-    public function listFoodCreate(Request $reqest){
+    public function listFoodCreate(){
+        $food_categories = food_category::all();
+        return view('dietDanIntakeZatGizi.listFoodCreate', compact('food_categories'));
+    }
+
+    public function listFoodStore(Request $request){
         $validate = $request->validate([
             'name' => 'required',
-            'calories' => 'required|number',
+            'calories_per_gram' => 'required',
+            'food_category_id' => 'required'
         ]);
-
-
+        $food = new food();
+        $food->name = $validate['name'];
+        $food->calories = $validate['calories_per_gram'];
+        $food->food_categories_id = $validate['food_category_id'];
+        $food->save();
+        return redirect()->route('listfood.index')->with('succses', 'Makanan berhasil ditambahkan');
     }
 }

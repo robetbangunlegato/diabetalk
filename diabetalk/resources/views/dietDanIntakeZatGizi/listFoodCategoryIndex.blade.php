@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row mt-3 gap-2">
-            <a href="" class="btn btn-primary">Tambah kategori</a>
+            <a href="{{ route('listfoodcategory.create') }}" class="btn btn-primary">Tambah kategori</a>
         </div>
         {{-- alert --}}
         <div class="row mt-3">
@@ -37,8 +37,8 @@
                             <td>{{ $item->category_name }}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfo-{{ $item->id }}">
+                                    <a href="{{ route('listfoodcategory.edit', $item->id) }}"
+                                        class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"

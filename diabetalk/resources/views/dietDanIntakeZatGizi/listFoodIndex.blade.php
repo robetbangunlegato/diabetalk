@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row mt-3 gap-2">
-            <a href="" class="btn btn-primary">Tambah makanan</a>
+            <a href="{{ route('listfood.create') }}" class="btn btn-primary">Tambah makanan</a>
             <a href="{{ route('listfoodcategory.index') }}" class="btn btn-info">Kategori makanan</a>
         </div>
         {{-- alert --}}

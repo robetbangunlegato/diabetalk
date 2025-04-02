@@ -19,7 +19,6 @@
             </div>
         </div>
 
-
         <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite; border-radius: 10px;">
             {{-- CHART KONSUMSI AIR --}}
             <div class="col-xl-6 pt-4">

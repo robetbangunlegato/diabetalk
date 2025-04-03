@@ -103,12 +103,12 @@
                                 Gmail
                             </label>
                         </div>
-                        <div class="form-check">
+                        {{-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="notification" id="notification2"
                                 value="push_notification">
                             <label class="form-check-label" for="notification2">
                                 Aplikasi
-                            </label>
+                            </label> 
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="notification" id="notification3"
@@ -116,7 +116,7 @@
                             <label class="form-check-label" for="notification3">
                                 WhatsApp
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('listfoodstore', [DietDanIntakeZatGiziController::class, 'listFoodStore'])->name('listfood.store');
     Route::get('listfoodedit{id}', [DietDanIntakeZatGiziController::class, 'listFoodEdit'])->name('listfood.edit');
     Route::put('listfoodupdate{id}', [DietDanIntakeZatGiziController::class, 'listFoodUpdate'])->name('listfood.update');
-    Route::get('listfooddestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodDestroy'])->name('listfood.destroy');
+    Route::delete('listfooddestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodDestroy'])->name('listfood.destroy');
     
     Route::get('listfoodcategorycreate', [DietDanIntakeZatGiziController::class, 'listFoodCategoryCreate'])->name('listfoodcategory.create');
     Route::post('listfoodcategorystore', [DietDanIntakeZatGiziController::class, 'listFoodCategoryStore'])->name('listfoodcategory.store');
@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::put('listfoodcategoryupdate{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryUpdate'])->name('listfoodcategory.update');
     Route::delete('listfoodcategorydestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodCategoryDestroy'])->name('listfoodcategory.destroy');
 
+    Route::post('foodconsumption', [DietDanIntakeZatGiziController::class, 'foodConsumptionStore'])->name('foodconsumption.store');
+    Route::get('foodconsumptionhistory', [DietDanIntakeZatGiziController::class, 'foodConsumptionHistoryIndex'])->name('foodconsumptionhistory.index');
 
 
 

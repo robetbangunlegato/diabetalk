@@ -24,7 +24,7 @@
         </div>
         {{-- table --}}
         <div class="row mt-3 table-responsive">
-            <table class="table table-primary table-striped text-center">
+            <table class="table table-primary table-striped text-center" id="reminder_table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -163,6 +163,7 @@
     <script>
         $(document).ready(function() {
             $('#alert').delay(3000).fadeOut('slow');
+            $('#reminder_table').DataTable();
         });
     </script>
 @endsection

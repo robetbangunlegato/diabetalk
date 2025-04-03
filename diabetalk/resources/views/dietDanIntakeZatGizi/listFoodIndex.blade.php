@@ -21,9 +21,15 @@
                 </div>
             @endif
         </div>
+        {{-- <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Masukan nama makanan yang dicari..."
+                aria-label="Recipient's username" aria-describedby="basic-addon2" id="searchInput"
+                value="{{ $query ?? '' }}">
+            <span class="input-group-text" id="basic-addon2"><i class="bi bi-search"></i></span>
+        </div> --}}
         {{-- table --}}
         <div class="row mt-3 table-responsive">
-            <table class="table table-primary table-striped text-center">
+            <table class="table table-primary table-striped text-center" id="food_table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -39,18 +45,17 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->calories }}</td>
-                            <td>{{ $item->categories }}</td>
+                            <td>{{ $item->food_categories->category_name }}</td>
                             <td>
                                 <div class="d-grid d-lg-grid d-lg-flex justify-content-center gap-2">
-                                    <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalInfo-{{ $item->id }}">
-                                        <i class="bi bi-eye"></i>
+                                    <a href="{{ route('listfood.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#modalHapus-{{ $item->id }}">
                                         <i class="bi bi-trash"></i>
                                     </a>
-                                    <!-- Modal delete untuk setiap peingingat -->
+                                    <!-- Modal delete untuk setiap makanan -->
                                     <div class="modal fade" id="modalHapus-{{ $item->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -68,7 +73,8 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Tutup</button>
-                                                    <form action="" method="POST">
+                                                    <form action="{{ route('listfood.destroy', $item->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -88,10 +94,12 @@
                 </tbody>
             </table>
         </div>
+
     </div>
     <script>
         $(document).ready(function() {
             $('#alert').delay(3000).fadeOut('slow');
+            $('#food_table').DataTable();
         });
     </script>
 @endsection

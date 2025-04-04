@@ -6,9 +6,10 @@
 </head>
 
 <body>
-    <h2>Pengingat: {{ $reminder->title }}</h2>
-    <p>{{ $reminder->description ?? 'Jangan lupa ya!' }}</p>
-
+    <h3>Jangan lupa, kamu punya pengingat : {{ $reminder->title }}</h3>
+    <br>
+    <p>Deskripsi : {!! $reminder->description ?? 'Tidak ada!' !!}</p>
+    <p>Instruksi : {{ $reminder->instruction }}</p>
     <br>
     <p>Jangan lupa untuk mengikuti pengingat ini! 😊</p>
 </body>

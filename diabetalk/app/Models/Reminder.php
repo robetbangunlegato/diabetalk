@@ -14,7 +14,7 @@ class Reminder extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reminderschedule()
+    public function schedules()
     {
         return $this->hasMany(ReminderSchedule::class);
     }

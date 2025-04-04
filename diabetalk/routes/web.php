@@ -12,6 +12,8 @@ use App\Http\Controllers\TanyaDiabetalkController;
 use App\Http\Controllers\CatatanKesehatanController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DietDanIntakeZatGiziController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReminderMail;
 
 Route::get('/', function(){
     return view('landing_page_1');
@@ -65,6 +67,14 @@ Route::middleware('auth')->group(function () {
     Route::post('foodconsumption', [DietDanIntakeZatGiziController::class, 'foodConsumptionStore'])->name('foodconsumption.store');
     Route::get('foodconsumptionhistory', [DietDanIntakeZatGiziController::class, 'foodConsumptionHistoryIndex'])->name('foodconsumptionhistory.index');
 
+    Route::get('/test-email', function () {
+    Mail::to('robetbangun2002@gmail.com')->send(new ReminderMail((object) [
+        'title' => 'Test Reminder',
+        'description' => 'Ini hanya tes email dari Laravel'
+        ]));
+
+        return 'Email test dikirim!';
+    });
 
 
     Route::get('intro_page_1', function () {

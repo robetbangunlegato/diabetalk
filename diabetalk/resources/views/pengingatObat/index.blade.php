@@ -83,9 +83,9 @@
                                                                     <strong><i class="bi bi-repeat"></i>
                                                                         Pengulangan:</strong>
                                                                     <ul class="list-inline mt-1">
-                                                                        @foreach ($item->reminderschedule as $schedule)
+                                                                        @foreach ($item->schedules as $item)
                                                                             <li class="list-inline-item badge bg-secondary">
-                                                                                {{ $schedule->day }}</li>
+                                                                                {{ $item->day }}</li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </li>

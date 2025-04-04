@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserOTP::class,'user_id')->where('expired_at','>', 'now()');
     }
+
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
+    }
 }

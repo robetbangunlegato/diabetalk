@@ -10,12 +10,14 @@
             </div>
         </div>
         <div class="row mt-3">
-            <a href="{{ route('listfood.index') }}" class="btn btn-primary mb-3">List makanan</a>
-            {{-- button add data water consumption --}}
+            @if (auth()->user()->id == 1)
+                <a href="{{ route('listfood.index') }}" class="btn btn-primary mb-3">List makanan</a>
+            @endif
+            {{-- button add data food consumption --}}
             <a type="button" data-bs-toggle="modal" data-bs-target="#modalTambahKonsumsiMakanan"
                 class="btn btn-primary">Tambah konsumsi makanan</a>
             </a>
-            {{-- modal add data water consumption --}}
+            {{-- modal add data food consumption --}}
             <form action="{{ route('foodconsumption.store') }}" method="post">
                 @csrf
                 <div class="modal fade" id="modalTambahKonsumsiMakanan" tabindex="-1"

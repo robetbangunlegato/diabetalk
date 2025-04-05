@@ -352,8 +352,8 @@
                                 <h5>Kadar HbA1c</h5>
                             </div>
                             <div class="offset-1 col-2">
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
-                                    class="btn btn-outline-primary rounded-circle">+</a>
+                                {{-- <a type="button" data-bs-toggle="modal" data-bs-target="#modalKadarGulaDarah"
+                                    class="btn btn-outline-primary rounded-circle">+</a> --}}
                             </div>
                         </div>
                         <canvas id="chartHbAc1" width="400" height="200">

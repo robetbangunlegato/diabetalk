@@ -26,6 +26,7 @@ class CatatanKesehatanController extends Controller
         // water consumption chart
         // get water consumption/intake per day
         $totalWaterIntakePerDay = DB::table('health_records')
+            ->where('user_id', $user_id)
             ->where('record_type', 'water_intake')
             ->whereDate('created_at', Carbon::today()) // Filter berdasarkan tanggal hari ini
             ->sum('value'); // -> output is float
@@ -126,7 +127,6 @@ class CatatanKesehatanController extends Controller
         $health_record = new health_record();
         $health_record->value = $validate['value'];
         $health_record->record_type = $validate['record_type'];
-        $health_record->other = $validate['met_level'];
         $health_record->user_id = Auth()->user()->id;
         $health_record->save();
 
@@ -136,8 +136,8 @@ class CatatanKesehatanController extends Controller
         }elseif($request->next_page == 'intro_page_3'){
             return view('introPage.intro_page_3');
         }
-        $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
-        $sugarLevels = [110, 120, 105];
+        // $dates = ['2025-01-01', '2025-01-02', '2025-01-03'];
+        // $sugarLevels = [110, 120, 105];
         return redirect()->route('catatankesehatan.index')->with('');
     }
 

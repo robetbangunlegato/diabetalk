@@ -15,7 +15,8 @@ class PengingatObatController extends Controller
     public function index()
     {
         //
-        $reminders = Reminder::all();
+        $reminders = Reminder::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+        // dd($reminders);
         return view('pengingatObat.index', compact('reminders'));
     }
 

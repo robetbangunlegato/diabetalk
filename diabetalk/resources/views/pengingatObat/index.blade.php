@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @dd($reminders) --}}
+                    {{-- @dd($reminders)     --}}
                     @forelse ($reminders as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -83,9 +83,9 @@
                                                                     <strong><i class="bi bi-repeat"></i>
                                                                         Pengulangan:</strong>
                                                                     <ul class="list-inline mt-1">
-                                                                        @foreach ($item->schedules as $item)
+                                                                        @foreach ($item->schedules as $schedule)
                                                                             <li class="list-inline-item badge bg-secondary">
-                                                                                {{ $item->day }}</li>
+                                                                                {{ $schedule->day }}</li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </li>
@@ -96,6 +96,12 @@
                                                                         {!! $item->description ?? '<span class="text-muted">Tidak ada deskripsi!</span>' !!}
                                                                     </div>
                                                                 </li>
+                                                                <li class="list-group-item">
+                                                                    <p class="text-muted" style="font-size: 12px;">
+                                                                        <i class="bi bi-clock"></i> Dibuat
+                                                                        pada: {{ $item->created_at }}
+                                                                    </p>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -104,11 +110,11 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Tutup</button>
-                                                    <form action="{{ route('pengingatobat.edit', $item->id) }}"
+                                                    {{-- <form action="{{ route('pengingatobat.edit', $item->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         <button type="submit" class="btn btn-warning">Edit</button>
-                                                    </form>
+                                                    </form> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +139,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     Apakah Anda yakin ingin menghapus pengingat
-                                                    "{{ $item->title }}"?
+                                                    "{{ $item->title }}"? {{ $item->id }}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"

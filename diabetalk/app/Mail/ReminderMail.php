@@ -35,7 +35,7 @@ class ReminderMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Reminder Mail',
+            subject: 'Email Pengingat',
         );
     }
 

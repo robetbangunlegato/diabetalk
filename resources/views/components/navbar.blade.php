@@ -65,7 +65,7 @@
         <a href="{{ route('catatankesehatan.index') }}"
             class="nav-link {{ $activePage == 'catatankesehatan' ? 'active active-page' : '' }} opacity-5 text-center text-decoration-none d-flex align-items-center">
             <div class="p-2 w-100">
-                <img src="{{ asset('icons/note.png') }}" alt="Catatan" style="height: 30px;">
+                <img src="{{ asset('icons/note.png') }}" alt="Catatan" style="height: 35px;">
                 <p>Catatan kesehatan</p>
             </div>
         </a>
@@ -74,7 +74,7 @@
         <a href="{{ route('dietdanintakezatgizi.index') }}"
             class="nav-link {{$activePage == 'dietdanintakezatgizi' ? 'active' : ''}} text-center text-decoration-none d-flex align-items-center">
             <div class="p-2 w-100">
-                <img src="{{ asset('icons/diet.png') }}" alt="Diet" style="height: 30px;">
+                <img src="{{ asset('icons/diet.png') }}" alt="Diet" style="height: 35px;">
                 <p>Diet & Intake Zat Gizi</p>
             </div>
         </a>
@@ -84,7 +84,7 @@
             class="nav-link {{$activePage == 'pengingatobat' ? 'active' : ''}} text-center text-decoration-none d-flex align-items-center">
             <div class="p-2 w-100">
 
-                <img src="{{ asset('icons/drugs.png') }}" alt="Pengingat Obat" style="height: 30px;">
+                <img src="{{ asset('icons/drugs.png') }}" alt="Pengingat Obat" style="height: 35px;">
                 <p>Pengingat Obat</p>
             </div>
         </a>
@@ -93,7 +93,7 @@
         <a href="{{ route('diabetalking.index') }}"
             class="nav-link {{$activePage == 'diabetalking' ? 'active' : ''}} text-center text-decoration-none d-flex align-items-center">
             <div class="p-2 w-100">
-                <img src="{{ asset('icons/knowledge-sharing.png') }}" alt="Diabetalking" style="height: 30px;">
+                <img src="{{ asset('icons/knowledge-sharing.png') }}" alt="Diabetalking" style="height: 35px;">
                 <p>Diabetalking</p>
             </div>
         </a>
@@ -103,7 +103,7 @@
             class="nav-link {{$activePage == 'tanyadiabetalk' ? 'active' : ''}} text-center text-decoration-none d-flex align-items-center">
             <div class="p-2 w-100">
 
-                <img src="{{ asset('icons/asking.png') }}" alt="Tanya" style="height: 30px;">
+                <img src="{{ asset('icons/asking.png') }}" alt="Tanya" style="height: 35px;">
                 <p>Tanya Diabetalk</p>
             </div>
         </a>
@@ -112,9 +112,21 @@
 
     <!-- go to profile -->
     <div class="d-flex align-items-center">
-        <a href="#" class="text-decoration-none">
+        <div class="dropdown">
+            <button class="dropdown-toggle bg-transparent border-0" id="dropdownProfileButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="{{ asset('icons/profile.png') }}" alt="Profil" style="height: 50px; width: 50px;">
-        </a>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownProfileButton">
+                <li><a href="http://" class="dropdown-item">Profile</a></li>
+                <li class="dropdown-divider"></li>
+                <li>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button class="dropdown-item" type="submit">Log out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </nav>

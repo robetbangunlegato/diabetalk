@@ -1,4 +1,4 @@
-<x-layouts.app :activePage="'catatankesehatan'" :title="'Catatan Kesehatan'" :description="'yuk pantau gula darah anda dengan mencatat hasil cek kesehatan disini'">
+<x-layouts.app :activePage="'catatankesehatan'" :title="'Catatan Kesehatan'" :description="'Yuk pantau gula darah anda dengan mencatat hasil cek kesehatan disini'">
     <style>
         .list-group-item:hover {
             background-color: rgba(0, 0, 0, 0.05);
@@ -6,10 +6,10 @@
         }
     </style>
     <div class="container margin-top-for-content-desktop">
-        <div class="row d-flex text-center" style="background-color: antiquewhite; border-radius: 10px;">
+        <div class="row d-flex text-center">
             {{-- CHART KONSUMSI AIR --}}
             <div class="col-xl-6 pt-4">
-                <div class="card shadow-sm">
+                <div class="card shadow">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-4 col-5">
@@ -125,7 +125,7 @@
 
             {{-- CHART LANGKAH  --}}
             <div class="col-xl-6 pt-4">
-                <div class="card shadow-sm">
+                <div class="card shadow">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-4 col-5">
@@ -241,7 +241,7 @@
 
             {{-- CHART KADAR GULA DARAH --}}
             <div class="col-xl-6 pt-4">
-                <div class="card shadow-sm">
+                <div class="card shadow">
                     <div class="card-body pb-0">
                         <div class="row">
                             <div class="offset-3 col-6">
@@ -348,7 +348,7 @@
             {{-- CHART HBAC1 --}}
             <div class="col-xl-6 pt-4 mb-3">
                 <div class="card">
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 shadow">
                         <div class="row">
                             <div class="offset-4 col-5">
                                 <h5>Kadar HbA1c</h5>

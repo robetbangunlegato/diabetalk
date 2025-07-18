@@ -10,7 +10,7 @@
         }
     </style>
 
-    <div class="container   " style="max-width: 480px; margin: auto;">
+    <div class="container margin-top-for-content-desktop" style="">
         <!-- Judul -->
         <h2 class="text-center">Rekomendasi waktu makan</h2>
 

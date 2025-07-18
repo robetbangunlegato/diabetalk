@@ -43,7 +43,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="container margin-top-for-content-desktop">
         <form action="{{ route('pengingatobat.store') }}" method="post">
 
             @csrf

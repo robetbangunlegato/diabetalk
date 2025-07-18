@@ -1,3 +1,4 @@
+@props(['activePage'])
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,39 +48,42 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 </head>
 
-<style>
-    #chartKonsumsiAir {
-        width: 240px !important;
-        height: 200px !important;
-        text-align: center;
-    }
+<body>
+    <style>
+        #chartKonsumsiAir {
+            width: 240px !important;
+            height: 200px !important;
+            text-align: center;
+        }
 
-    #iconLangkah {
-        width: 200px;
-        height: 200px;
-    }
-
-    @media (max-width: 575.98px) {
         #iconLangkah {
-            width: 150px !important;
-            height: 150px !important;
+            width: 200px;
+            height: 200px;
         }
 
-        .teks-di-bawah-judul-halaman {
-            font-size: 14px !important;
-            /* Contoh ukuran kecil */
-        }
+        @media (max-width: 575.98px) {
+            #iconLangkah {
+                width: 150px !important;
+                height: 150px !important;
+            }
 
-        .teks-judul-halaman {
-            font-size: 28px !important;
-            margin-top: 16px !important;
-        }
-    }
-</style>
-@yield('content')
+            .teks-di-bawah-judul-halaman {
+                font-size: 14px !important;
+                /* Contoh ukuran kecil */
+            }
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            .teks-judul-halaman {
+                font-size: 28px !important;
+                margin-top: 16px !important;
+            }
+        }
+    </style>
+    {{-- header/navbar --}}
+    <x-top-navbar/>
+    @yield('content')
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

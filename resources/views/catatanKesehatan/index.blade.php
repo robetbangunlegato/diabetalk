@@ -5,8 +5,8 @@
             transition: 0.3s;
         }
     </style>
-    <div class="container">
-        <div class="row d-flex mt-3 text-center" style="background-color: antiquewhite; border-radius: 10px;">
+    <div class="container margin-top-for-content-desktop">
+        <div class="row d-flex text-center" style="background-color: antiquewhite; border-radius: 10px;">
             {{-- CHART KONSUMSI AIR --}}
             <div class="col-xl-6 pt-4">
                 <div class="card shadow-sm">

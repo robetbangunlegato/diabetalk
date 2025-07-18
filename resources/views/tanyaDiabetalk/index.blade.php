@@ -1,10 +1,9 @@
 <x-layouts.app :activePage="'tanyadiabetalk'" :title="'Tanya diabetalk'" :description="''">
-
-
-    
-        <div class="row text-center g-3">
-             <!-- Sapaan -->
-    <p class="fs-5">Hai {{ auth()->user()->name }}! 👋<br>apa ada yang bisa Diabetalk bantu?</p>
+    <div class="container margin-top-for-content-desktop">
+    <div class="row text-center g-3">
+        <!-- Sapaan -->
+        <p class="fs-5">Hai {{ auth()->user()->name }}! 👋<br>apa ada yang bisa Diabetalk bantu?</p>
+    </div>
 
     <!-- Kartu Konsultan -->
     <div class="bg-light rounded-4 shadow-sm p-4 mx-auto" style="max-width: 350px;">
@@ -28,8 +27,6 @@
         <p class="text-muted small m-0">Jadwal konsultasi</p>
         <p class="text-muted small">Senin - Jumat (09.00 - 16.00)</p>
     </div>
-
-        </div>
-
     </div>
+
 </x-layouts.app>

@@ -29,7 +29,7 @@
             margin-bottom: 8px;
         }
     </style>
-    <div class="container">
+    <div class="container margin-top-for-content-desktop">
         <h2 class="text-center">Riwayat asupan</h2>
 
         {{-- card --}}

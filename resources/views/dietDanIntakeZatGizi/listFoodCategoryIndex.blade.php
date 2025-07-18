@@ -1,6 +1,6 @@
 <x-layouts.app :activePage="'dietdanintakezatgizi'" :title="'Diet dan intake zat gizi'" :description="''">
 
-    <div class="container ">
+    <div class="container margin-top-for-content-desktop">
         <div class="row mt-3 gap-2">
 
             <a href="{{ route('listfoodcategory.create') }}" class="btn btn-primary">Tambah kategori</a>

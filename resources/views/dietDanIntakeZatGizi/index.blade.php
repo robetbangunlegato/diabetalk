@@ -1,6 +1,6 @@
 <x-layouts.app :activePage="'dietdanintakezatgizi'" :title="'Diet dan intake zat gizi'" :description="''">
 
-    <div class="container">
+    <div class="container margin-top-for-content-desktop" >
         <div class="row mt-3">
 
             @if (auth()->user()->id == 1)
@@ -200,31 +200,31 @@
 
                 @php
 
-                    $topics = [
-                        [
-                            'link' => 'foodconsumptionhistory.index',
+$topics = [
+    [
+        'link' => 'foodconsumptionhistory.index',
 
-                            'icon' => 'bi bi-clipboard-data',
+        'icon' => 'bi bi-clipboard-data',
 
-                            'title' => 'Riwayat asupan',
-                        ],
+        'title' => 'Riwayat asupan',
+    ],
 
-                        [
-                            'link' => 'rekomendasiwaktumakan',
+    [
+        'link' => 'rekomendasiwaktumakan',
 
-                            'icon' => 'bi bi-info-circle',
+        'icon' => 'bi bi-info-circle',
 
-                            'title' => 'Rekomendasi waktu makan',
-                        ],
+        'title' => 'Rekomendasi waktu makan',
+    ],
 
-                        [
-                            'link' => 'foodconsumptionhistory.index',
+    [
+        'link' => 'foodconsumptionhistory.index',
 
-                            'icon' => 'bi bi-book',
+        'icon' => 'bi bi-book',
 
-                            'title' => 'Edukasi bahan makanan',
-                        ],
-                    ];
+        'title' => 'Edukasi bahan makanan',
+    ],
+];
 
                 @endphp
 

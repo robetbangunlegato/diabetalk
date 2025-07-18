@@ -1,7 +1,7 @@
 <x-layouts.app :activePage="'pengingatobat'" :title="'Pengingat obat'" :description="''">
 
 
-    <div class="container">
+    <div class="container margin-top-for-content-desktop">
         {{-- tambah button --}}
 
         <div class="row mt-3">

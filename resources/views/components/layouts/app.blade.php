@@ -63,17 +63,26 @@
                 margin-top: 16px !important;
             }
         }
+
+        @media (min-width: 576px) {
+        .margin-top-for-content-desktop{
+            margin-top: 7rem; /* Atur sesuai tinggi navbar kamu */
+        }}
+        
+        .active-page{
+            background-color: red;
+        }
+
     </style>
-    <x-header :title="$title" :description="$description" />
+    {{-- <x-header :title="$title" :description="$description" /> --}}
+
+    {{-- header/navbar --}}
+    <x-navbar :activePage="$activePage"/>  {{-- navigation bar application --}}
 
     {{-- main content --}}
     <main class="flex-fill container text-center mt-3" style="margin-bottom: 100px">
         {{ $slot }}
     </main>
 
-    {{-- footer / navbar --}}
-    <x-bottom-navbar :activePage="$activePage" />
-
 </body>
-
 </html>

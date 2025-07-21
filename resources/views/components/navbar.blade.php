@@ -51,7 +51,7 @@
 </nav>
 
 {{-- navigation bar for laptop/PC: Top Navbar --}}
-<nav class="nav nav-tabs fixed-top d-none d-sm-flex justify-content-center   gap-4 shadow-sm bg-white">
+<nav class="nav nav-tabs fixed-top d-none d-sm-flex justify-content-center gap-4 shadow-sm bg-white">
     <!-- logo -->
     <div class="d-flex align-items-center">
         <a href="#" class="navbar-brand me-4">

@@ -71,8 +71,7 @@
         
         .active-page{
             background-color: red;
-        }
-
+        }   
     </style>
     {{-- <x-header :title="$title" :description="$description" /> --}}
 

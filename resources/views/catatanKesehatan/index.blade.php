@@ -6,6 +6,11 @@
         }
     </style>
     <div class="container margin-top-for-content-desktop">
+        <div class="d-md-grid d-none">
+        <div class="d-flex justify-content-center align-items-center rounded" style="background-image: url('{{asset('/background-catatankesehatan.jpg')}}'); height: 6rem; background-repeat: no-repeat; background-size: cover; background-position: center 57%;">
+            <p class="text-white" style="font-size: 20pt;">Yuk pantau gula darah anda dengan mencatat hasil cek kesehatan disini</p>
+        </div>
+        </div>
         <div class="row d-flex text-center">
             {{-- CHART KONSUMSI AIR --}}
             <div class="col-xl-6 pt-4">
@@ -397,13 +402,14 @@
                 </div>
             </div>
         </div>
-        <div class="row text-center mt-3 g-4" style="background-color: antiquewhite; border-radius: 10px;">
-            <div class="col-12">
-                <h4 class="text-muted">Hasil lab lainnya</h4>
+        {{-- hasil lab lainnya --}}
+        <div class="row text-center mt-3 g-4">
+            <div class="col-12 d-flex justify-content-center align-items-center rounded" style="background-image: url({{asset("background-catatankesehatan-2.jpg")}}); height: 6rem; background-size: cover; background-repeat: no-repeat; background-position: center 40%;">
+                <p class="text-white h4">Hasil lab lainnya</p>
             </div>
             {{-- Tekanan darah --}}
             <div class="col-xl-4 col-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body p-1">
                         <div class="grid">
                             <div class="row">
@@ -497,7 +503,7 @@
             </div>
             {{-- kolesterol --}}
             <div class="col-xl-4 col-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body p-1">
                         <div class="grid">
                             <div class="row">
@@ -625,7 +631,7 @@
             </div>
             {{-- fungsi ginjal --}}
             <div class="col-xl-4 col-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body p-1">
                         <div class="grid">
                             <div class="row">

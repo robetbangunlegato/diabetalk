@@ -30,12 +30,14 @@
         }
     </style>
     <div class="container margin-top-for-content-desktop">
-        <h2 class="text-center">Riwayat asupan</h2>
+        <div class="d-grid align-items-center rounded" style="background-image: url({{asset('background-dietdanintakezatgizi.jpg')}}); background-repeat: no-repeat; height:6rem; background-size: cover; background-position: center 48%;">
+        <p class="h2 text-white">Riwayat asupan</p>
+        </div>
 
         {{-- card --}}
-
+        <div class="mt-4">
         @forelse ($food_consumptions_history as $item)
-            <div class="nutrition-card mx-auto mb-4">
+            <div class="nutrition-card mx-auto mb-4 shadow">
                 <!-- Header -->
                 <div class="nutrition-header">
                     <div><span>⏰</span> {{ $item->adverb_time }}</div>
@@ -71,6 +73,7 @@
         @empty
             <h4 class="text-muted text-center">Tidak ada data!</h4>
         @endforelse
+        </div>
 
 
     </div>

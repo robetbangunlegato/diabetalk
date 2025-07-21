@@ -1,7 +1,35 @@
 <x-layouts.app :activePage="'dietdanintakezatgizi'" :title="'Diet dan intake zat gizi'" :description="''">
+    @php
 
-    <div class="container margin-top-for-content-desktop" >
-        <div class="row mt-3">
+$topics = [
+    [
+        'link' => 'foodconsumptionhistory.index',
+
+        'icon' => 'bi bi-clipboard-data',
+
+        'title' => 'Riwayat asupan',
+    ],
+
+    [
+        'link' => 'rekomendasiwaktumakan',
+
+        'icon' => 'bi bi-info-circle',
+
+        'title' => 'Rekomendasi waktu makan',
+    ],
+
+    [
+        'link' => 'foodconsumptionhistory.index',
+
+        'icon' => 'bi bi-book',
+
+        'title' => 'Edukasi bahan makanan',
+    ],
+];
+
+    @endphp
+    <div class="container margin-top-for-content-desktop">
+        <div class="mt-3">
 
             @if (auth()->user()->id == 1)
                 <a href="{{ route('listfood.index') }}" class="btn btn-primary mb-3">List makanan</a>
@@ -10,7 +38,7 @@
             {{-- button add data food consumption --}}
 
             <a type="button" data-bs-toggle="modal" data-bs-target="#modalTambahKonsumsiMakanan"
-                class="btn btn-primary">Tambah konsumsi makanan</a>
+                class="btn btn-primary col-12">Tambah konsumsi makanan</a>
 
             </a>
 
@@ -144,8 +172,7 @@
         </div>
 
         {{-- alert --}}
-
-        <div class="row mt-3">
+        <div class="mt-3">
 
             @if (session('success'))
                 <div class="alert alert-success" role="alert" id="alert">
@@ -157,105 +184,64 @@
 
         </div>
 
-        <div class="container" style="background-color: antiquewhite; border-radius: 10px;">
+        <!-- Chart -->
+        <div class="card shadow">
 
-            <div class="pb-3 pt-3 text-center">
+            <div class="card-body">
 
-                <div class="card shadow-sm">
+                {{-- <h3 class="text-center">Konsumsi Kalori Hari Ini</h3> --}}
 
-                    <div class="card-body">
+                <div class="d-flex justify-content-center">
 
-                        {{-- <h3 class="text-center">Konsumsi Kalori Hari Ini</h3> --}}
+                    <div style="position: relative; width: 300px; height: 300px;">
 
-                        <div class="d-flex justify-content-center">
+                        <canvas id="calorieChart"></canvas>
 
-                            <div style="position: relative; width: 300px; height: 300px;">
+                        <!-- ✅ Tambahkan label di tengah chart -->
 
-                                <canvas id="calorieChart"></canvas>
-
-                                <!-- ✅ Tambahkan label di tengah chart -->
-
-                                <div id="chartLabel"
-                                    style="position: absolute; top: 63%; left: 50%; transform: translate(-50%, -50%);
+                        <div id="chartLabel"
+                            style="position: absolute; top: 63%; left: 50%; transform: translate(-50%, -50%);
 
                 font-size: 16px; font-weight: bold; color: #333;">
 
-                                </div>
-
-                            </div>
-
                         </div>
-
-                        <!-- ✅ Tambahkan informasi jumlah kalori -->
-
-                        <p class="mt-3 mb-0">Total kalori: <strong id="consumedCalories"></strong> kkal</p>
-
-                        <p>Sisa kalori: <strong id="remainingCalories"></strong> kkal</p>
 
                     </div>
 
                 </div>
 
-                <div class="pb-3"></div>
+                <!-- ✅ Tambahkan informasi jumlah kalori -->
 
-                @php
+                <p class="mt-3 mb-0">Total kalori: <strong id="consumedCalories"></strong> kkal</p>
 
-$topics = [
-    [
-        'link' => 'foodconsumptionhistory.index',
-
-        'icon' => 'bi bi-clipboard-data',
-
-        'title' => 'Riwayat asupan',
-    ],
-
-    [
-        'link' => 'rekomendasiwaktumakan',
-
-        'icon' => 'bi bi-info-circle',
-
-        'title' => 'Rekomendasi waktu makan',
-    ],
-
-    [
-        'link' => 'foodconsumptionhistory.index',
-
-        'icon' => 'bi bi-book',
-
-        'title' => 'Edukasi bahan makanan',
-    ],
-];
-
-                @endphp
-
-
-
-                @foreach ($topics as $topic)
-                    <div class="col-md-6 d-flex justify-content-center mb-3">
-
-                        <a href="{{ route($topic['link']) }}" class="text-decoration-none">
-
-                            <div class="card text-center p-3 shadow" style="width: 220px;">
-
-                                <div class="card-body">
-
-                                    <i class="{{ $topic['icon'] }} display-4 text-primary"></i>
-
-                                    <h5 class="card-title mt-2">{{ $topic['title'] }}</h5>
-
-                                </div>
-
-                            </div>
-
-                        </a>
-
-                    </div>
-                @endforeach
+                <p>Sisa kalori: <strong id="remainingCalories"></strong> kkal</p>
 
             </div>
 
         </div>
 
+        <!-- 3 more menu -->
+        <div class="d-md-flex mt-4">
+            @foreach ($topics as $topic)
+                <div class="col-12 col-md-4">
+                    <div class="d-flex justify-content-center mt-md-0 mt-4">
+                        <a href="{{ route($topic['link']) }}" class="text-decoration-none">
+                            <div class="card p-3 shadow" style="width: 220px; height: 200px;">
+                                <div class="card-body">
+                                    <i class="{{ $topic['icon'] }} display-4 text-primary"></i>
+                                    <h5 class="card-title mt-2">{{ $topic['title'] }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- add consumption food button. status : off. caution for delete -->
+        {{-- <div class="fixed-bottom d-flex justify-content-end" style="margin-bottom: 6rem; margin-right: 1rem;">
+        <button class="btn btn-primary rounded-pill" style="padding-top: 12px; padding-bottom: 12px;"><img src="{{asset("icons/foods.png")}}" width="40px" height="40px" alt=""></button>
+        </div> --}}
     </div>
 
     <script>

@@ -1,18 +1,14 @@
 <x-layouts.app :activePage="'pengingatobat'" :title="'Pengingat obat'" :description="''">
-
-
     <div class="container margin-top-for-content-desktop">
         {{-- tambah button --}}
 
-        <div class="row mt-3">
-
-            <a href="{{ route('pengingatobat.create') }}" class="btn btn-primary">Tambah</a>
-
+        <div class="mt-3">
+            <a href="{{ route('pengingatobat.create') }}" class="col-12 btn btn-primary">Tambah</a>
         </div>
 
         {{-- alert --}}
 
-        <div class="row mt-3">
+        <div class="mt-3">
 
             @if (session('success'))
                 <div class="alert alert-success" role="alert" id="alert">
@@ -26,24 +22,22 @@
 
         {{-- table --}}
 
-        <div class="row mt-3 table-responsive">
+        <div class="mt-3 table-responsive">
 
-            <table class="table table-primary table-striped text-center" id="reminder_table">
+            <table class="table table-primary table-striped text-center shadow" id="reminder_table">
 
                 <thead>
+                    <tr class="text-center">
 
-                    <tr>
+                        <th class="text-center">No</th>
 
-                        <th>No</th>
+                        <th class="text-center">Judul</th>
 
-                        <th>Judul</th>
+                        <th class="text-center">Instruksi</th>
 
-                        <th>Instruksi</th>
+                        <th class="text-center">Waktu</th>
 
-                        <th>Waktu</th>
-
-                        <th>Opsi</th>
-
+                        <th class="text-center">Opsi</th>
                     </tr>
 
                 </thead>

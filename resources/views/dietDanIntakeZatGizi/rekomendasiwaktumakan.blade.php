@@ -12,7 +12,13 @@
 
     <div class="container margin-top-for-content-desktop" style="">
         <!-- Judul -->
-        <h2 class="text-center">Rekomendasi waktu makan</h2>
+        <div class="d-grid align-items-center rounded" style="background-image: url({{asset("background-dietdanintakezatgizi-2.jpg")}}); height:6rem; background-repeat: no-repeat; background-size: cover; background-position: center 45%;">
+        <div class="d-flex justify-content-center">
+            <p class="h4 text-white bg-black">
+            Rekomendasi waktu makan
+        </p>
+        </div>
+        </div>
 
 
         <div class="row mt-4">

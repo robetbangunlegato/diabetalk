@@ -1,54 +1,53 @@
 <x-layouts.app :activePage="'diabetalking'" :title="'Diabetalking'" :description="'Edukasi pada pencegahan komplikasi diabetes melitus '">
-
-    <div class="container margin-top-for-content-desktop">
-        <div class="row mt-3 g-3 p-3" style="background-color: antiquewhite; border-radius: 10px;">
-
-            @php
+@php
 
 $topics = [
 
-    ['link' => '#', 'icon' => 'bi bi-heart-pulse', 'title' => 'Diabetes Melitus'],
+    ['link' => '#', 'icon' => 'bi bi-heart-pulse', 'title' => 'Diabetes Melitus', 'image-path' => 'background-diabetalking-2.jpg'],
 
-    ['link' => '#', 'icon' => 'bi bi-people', 'title' => 'Diabetes & Obesitas'],
+    ['link' => '#', 'icon' => 'bi bi-people', 'title' => 'Diabetes & Obesitas', 'image-path' => 'background-diabetalking-3.jpg'],
 
-    ['link' => '#', 'icon' => 'bi bi-heart', 'title' => 'Diabetes & Hipertensi'],
+    ['link' => '#', 'icon' => 'bi bi-heart', 'title' => 'Diabetes & Hipertensi', 'image-path' => 'background-diabetalking-4.jpg'],
 
-    ['link' => '#', 'icon' => 'bi bi-heart-fill', 'title' => 'Diabetes & Jantung Koroner'],
+    ['link' => '#', 'icon' => 'bi bi-heart-fill', 'title' => 'Diabetes & Jantung Koroner', 'image-path' => 'background-diabetalking-5.jpg'],
 
-    ['link' => '#', 'icon' => 'bi bi-droplet', 'title' => 'Diabetes & Gagal Ginjal'],
+    ['link' => '#', 'icon' => 'bi bi-droplet', 'title' => 'Diabetes & Gagal Ginjal', 'image-path' => 'background-diabetalking-6.jpg'],
 
 ];
 
-            @endphp
-
-
-
-            @foreach ($topics as $topic)
-
-                <div class="col-md-6 d-flex justify-content-center">
-
-                    <a href="{{ $topic['link'] }}" class="text-decoration-none">
-
-                        <div class="card text-center p-3 shadow" style="width: 220px;">
-
-                            <div class="card-body">
-
-                                <i class="{{ $topic['icon'] }} display-4 text-primary"></i>
-
-                                <h5 class="card-title mt-2">{{ $topic['title'] }}</h5>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-            @endforeach
-
+@endphp
+<style>
+    .hover-grow-effect{
+        transition: transform 0.3s ease;
+    }
+    .hover-grow-effect:hover{
+        transform: scale(1.05); /* akan expand ke 105% */
+    }
+    .hover-grow-effect:active{
+        transform: scale(1); /* akan expand ke 105% */
+    }
+</style>
+    <div class="container margin-top-for-content-desktop">
+        <div class="row align-items-center justify-content-center rounded" style="background-image: url({{asset('background-diabetalking.jpg')}}); height:6rem; background-size:cover; background-repeat:no-repeat; background-position: center 61%">
+            <p class="h4 text-white">Edukasi pada pencegahan komplikasi diabetes melitus</p>
         </div>
+        
+        {{-- <div class="row justify-content-around">
+            <a href="http://" class="col-5 mt-4 text-decoration-none d-grid align-items-center" style="height: 250px; background-image: url({{asset('background-diabetalking-2.jpg')}}); background-size:cover; background-position: center center; background-repeat:no-repeat">
+                <p class="">text</p>
+            </a>
+            
+        </div> --}}
 
+        <div class="row justify-content-around">
+            @foreach ($topics as $topic)
+                <a href="{{ $topic['link'] }}" class="col-md-5 mt-4 d-grid align-items-center text-decoration-none rounded shadow hover-grow-effect" style="height: 250px; background-image: url({{$topic['image-path']}}); background-size:cover; background-position: center center; background-repeat:no-repeat;">
+                    <div class="" id=""> <!-- do not delete this div! -->
+                    <i class="{{ $topic['icon'] }} display-4 text-white" style="-webkit-text-stroke: 1px black;"></i>
+                    <p class="h3 mt-2 text-white" style="-webkit-text-stroke: 1px black;">{{ $topic['title'] }}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </div>
-
 </x-layouts.app>

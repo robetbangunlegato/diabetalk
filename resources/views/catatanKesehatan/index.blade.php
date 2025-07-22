@@ -402,11 +402,13 @@
                 </div>
             </div>
         </div>
+
         {{-- hasil lab lainnya --}}
+        <div class="d-flex justify-content-center align-items-center rounded mt-3"
+            style="background-image: url({{asset("background-catatankesehatan-2.jpg")}}); height: 6rem; background-size: cover; background-repeat: no-repeat; background-position: center 40%;">
+            <p class="text-white h4">Hasil lab lainnya</p>
+        </div>
         <div class="row text-center mt-3 g-4">
-            <div class="col-12 d-flex justify-content-center align-items-center rounded" style="background-image: url({{asset("background-catatankesehatan-2.jpg")}}); height: 6rem; background-size: cover; background-repeat: no-repeat; background-position: center 40%;">
-                <p class="text-white h4">Hasil lab lainnya</p>
-            </div>
             {{-- Tekanan darah --}}
             <div class="col-xl-4 col-12">
                 <div class="card shadow">

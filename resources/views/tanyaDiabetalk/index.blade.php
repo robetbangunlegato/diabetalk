@@ -5,7 +5,7 @@
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
-                    Teks berhasil disalin!
+                    Berhasil disalin!
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                     aria-label="Close"></button>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
     <div class="row text-center g-3">
         <!-- Sapaan -->
         <p class="fs-5">Hai {{ auth()->user()->name }}! 👋<br>apa ada yang bisa Diabetalk bantu?</p>

@@ -1,8 +1,18 @@
-@props(['activePage'])
+@props(['activePage', 'description'])
 
+@php
+$menus = [
+    [
+        'route' => 'catatankesehatan.index',
+        'activePage' => 'catatankesehatan',
+        'icon' => ''
+
+    ]
+]
+@endphp
 
 {{-- navigation bar for mobile: Bottom Navbar --}}
-<nav class="navbar d-sm-none fixed-bottom bg-white p-0">
+<nav class="navbar d-xl-none fixed-bottom bg-white p-0">
 <style>
     .active-container {
         background-color: gainsboro;
@@ -11,7 +21,7 @@
     <div class="container d-flex justify-content-around align-items-stretch">
         <a href="{{ route('catatankesehatan.index') }}"
             class="text-center text-decoration-none h-100 d-flex align-items-center">
-            <div class="p-2 w-100 {{ $activePage == 'catatankesehatan' ? 'active-container' : '' }}">
+            <div class="my-2 w-100 {{ $activePage == 'catatankesehatan' ? 'active-container' : '' }}">
                 <img src="{{ asset('icons/note.png') }}" alt="Catatan" style="height: 30px;">
                 <div style="font-size: 12px;">Catatan<br>Kesehatan</div>
             </div>
@@ -19,14 +29,14 @@
 
         <a href="{{ route('dietdanintakezatgizi.index') }}"
             class="text-center text-decoration-none h-100 d-flex align-items-center">
-            <div class="p-2 w-100 {{ $activePage == 'dietdanintakezatgizi' ? 'active-container' : '' }}">
+            <div class="my-2 w-100 {{ $activePage == 'dietdanintakezatgizi' ? 'active-container' : '' }}">
                 <img src="{{ asset('icons/diet.png') }}" alt="Diet" style="height: 30px;">
                 <div style="font-size: 12px;">Diet & Intake<br>Zat Gizi</div>
             </div>
         </a>
         <a href="{{ route('pengingatobat.index') }}"
             class="text-center text-decoration-none h-100 d-flex align-items-center">
-            <div class="p-2 w-100 {{ $activePage == 'pengingatobat' ? 'active-container' : '' }}">
+            <div class="my-2 w-100 {{ $activePage == 'pengingatobat' ? 'active-container' : '' }}">
 
                 <img src="{{ asset('icons/drugs.png') }}" alt="Pengingat Obat" style="height: 30px;">
                 <div style="font-size: 12px;">Pengingat<br>Obat</div>
@@ -34,24 +44,72 @@
         </a>
         <a href="{{ route('diabetalking.index') }}"
             class="text-center text-decoration-none h-100 d-flex align-items-center">
-            <div class="p-2 w-100 {{ $activePage == 'diabetalking' ? 'active-container' : '' }}">
+            <div class="my-2 w-100 {{ $activePage == 'diabetalking' ? 'active-container' : '' }}">
                 <img src="{{ asset('icons/knowledge-sharing.png') }}" alt="Diabetalking" style="height: 30px;">
                 <div style="font-size: 12px;">Diabetalking <br><br></div>
             </div>
         </a>
         <a href="{{ route('tanyadiabetalk.index') }}"
             class="text-center text-decoration-none h-100 d-flex align-items-center">
-            <div class="p-2 w-100 {{ $activePage == 'tanyadiabetalk' ? 'active-container' : '' }}">
+            <div class="my-2 w-100 {{ $activePage == 'tanyadiabetalk' ? 'active-container' : '' }}">
 
                 <img src="{{ asset('icons/asking.png') }}" alt="Tanya" style="height: 30px;">
                 <div style="font-size: 12px;">Tanya<br>Diabetalk</div>
             </div>
         </a>
     </div>
+    
 </nav>
+<!-- navigation bar for mobile: top hader -->
+<nav>
+    <div class="container d-xl-none fixed-top bg-white shadow-sm">
+        <div class="d-flex justify-content-between my-2">
+        <img src="{{asset('logo-dengan-tulisan.png')}}" width="85px" height="85px" alt="">
+        <div class="d-grid align-items-center">
+            <div class="">
+            <p class="h1 p-0 m-0 text-center">Diabetalk</p>
+            <p class="p-0 m-0 text-center {{$description == '' ? 'd-none' :''}}" style="font-size: 10pt">
+                {{$description}}
+            </p>
+            </div>
+        </div>
+        <div class="d-grid align-items-center">
+            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
+                <i class="bi bi-list" style="font-size: 30px;"></i>
+            </button>
+
+        
+        </div>
+        </div>
+    </div>
+</nav>
+<!-- sidebar -->
+<div class="offcanvas offcanvas-end w-50" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 id="mobileSidebarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <div class="nav-link">
+                <a href="" class="btn btn-primary text-decoration-none">Profile</a>
+                </div>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <form action="{{route('logout')}}" method="post" class="nav-link">
+                    @csrf
+                    <button class="btn btn-danger" type="submit">Log out</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
 
 {{-- navigation bar for laptop/PC: Top Navbar --}}
-<nav class="nav nav-tabs fixed-top d-none d-sm-flex justify-content-center gap-4 shadow-sm bg-white">
+<nav class="nav nav-tabs fixed-top d-none d-xl-flex justify-content-center gap-4 shadow-sm bg-white">
     <!-- logo -->
     <div class="d-flex align-items-center">
         <a href="#" class="navbar-brand me-4">
@@ -122,7 +180,7 @@
                 <li>
                     <form action="{{route('logout')}}" method="post">
                         @csrf
-                        <button class="dropdown-item" type="submit">Log out</button>
+                        <button class="dropdown-item text-danger" type="submit">Log out</button>
                     </form>
                 </li>
             </ul>

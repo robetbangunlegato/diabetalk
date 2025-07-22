@@ -43,16 +43,16 @@
         }
     </style>
 
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
         <form action="{{ route('pengingatobat.store') }}" method="post">
 
             @csrf
 
-            <div class="row mt-3 p-3 gap-4" style="background-color: antiquewhite">
+            <div class="row mt-3 p-3 gap-4" style="">
 
                 {{-- title --}}
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <label for="namaObat" class="">Judul</label>
 
@@ -74,7 +74,7 @@
 
                 {{-- description --}}
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <div class="grid">
 
@@ -102,7 +102,7 @@
 
                 {{-- insctruction --}}
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <label for="" class="mb-3">Instruksi</label>
 
@@ -155,7 +155,7 @@
 
                 {{-- notification --}}
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <label for="">Notifikasi</label>
 
@@ -218,7 +218,7 @@
 
                 {{-- time --}}
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <label for="time">Waktu pengingat</label>
 
@@ -240,7 +240,7 @@
 
                 <!-- repeat -->
 
-                <div class="col-12 bg-light p-3">
+                <div class="col-12 bg-light p-3 shadow rounded">
 
                     <label for="">Perulangan</label>
 

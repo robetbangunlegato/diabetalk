@@ -5,8 +5,8 @@
             transition: 0.3s;
         }
     </style>
-    <div class="container margin-top-for-content-desktop">
-        <div class="d-md-grid d-none">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
+        <div class="d-xl-grid d-none">
         <div class="d-flex justify-content-center align-items-center rounded" style="background-image: url('{{asset('/background-catatankesehatan.jpg')}}'); height: 6rem; background-repeat: no-repeat; background-size: cover; background-position: center 57%;">
             <p class="text-white" style="font-size: 20pt;">Yuk pantau gula darah anda dengan mencatat hasil cek kesehatan disini</p>
         </div>

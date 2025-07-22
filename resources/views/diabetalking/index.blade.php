@@ -27,9 +27,11 @@ $topics = [
         transform: scale(1); /* akan expand ke 105% */
     }
 </style>
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
+        <div class="d-none d-xl-grid">
         <div class="row align-items-center justify-content-center rounded" style="background-image: url({{asset('background-diabetalking.jpg')}}); height:6rem; background-size:cover; background-repeat:no-repeat; background-position: center 61%">
             <p class="h4 text-white">Edukasi pada pencegahan komplikasi diabetes melitus</p>
+        </div>
         </div>
         
         {{-- <div class="row justify-content-around">

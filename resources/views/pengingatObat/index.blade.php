@@ -1,5 +1,5 @@
 <x-layouts.app :activePage="'pengingatobat'" :title="'Pengingat obat'" :description="''">
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
         {{-- tambah button --}}
 
         <div class="mt-3">

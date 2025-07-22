@@ -1,6 +1,13 @@
-@extends('layouts_user.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetalk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-@section('content')
+</head>
+<body>
     <style>
         .typing-text {
             /* font-family: monospace; */
@@ -11,6 +18,12 @@
             display: inline;
             font-size: 1.25rem;
             /* text-transform: uppercase; */
+        }
+
+        @media (min-width: 1140px) {
+            .typing-text{
+                font-size: 24pt;
+            }
         }
 
         /* cursor blinking */
@@ -76,5 +89,6 @@
         }
 
         type();
-    </script>
-@endsection
+    </script>    
+</body>
+</html>

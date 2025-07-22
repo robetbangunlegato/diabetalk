@@ -10,7 +10,7 @@
         }
     </style>
 
-    <div class="container margin-top-for-content-desktop" style="">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile" style="">
         <!-- Judul -->
         <div class="d-grid align-items-center rounded" style="background-image: url({{asset("background-dietdanintakezatgizi-2.jpg")}}); height:6rem; background-repeat: no-repeat; background-size: cover; background-position: center 45%;">
         <div class="d-flex justify-content-center">

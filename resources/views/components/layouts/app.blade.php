@@ -64,9 +64,14 @@
             }
         }
 
-        @media (min-width: 576px) {
+        @media (min-width: 992px) {
         .margin-top-for-content-desktop{
             margin-top: 7rem; /* Atur sesuai tinggi navbar kamu */
+        }}
+
+         @media (max-width: 992px) {
+        .margin-top-for-content-mobile{
+            margin-top: 6rem; /* Atur sesuai tinggi navbar kamu */
         }}
         
         .active-page{
@@ -76,7 +81,7 @@
     {{-- <x-header :title="$title" :description="$description" /> --}}
 
     {{-- header/navbar --}}
-    <x-navbar :activePage="$activePage"/>  {{-- navigation bar application --}}
+    <x-navbar :activePage="$activePage" :description="$description"/>  {{-- navigation bar application --}}
 
     {{-- main content --}}
     <main class="flex-fill container text-center mt-3" style="margin-bottom: 100px">

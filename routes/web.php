@@ -15,21 +15,17 @@ use App\Http\Controllers\DietDanIntakeZatGiziController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReminderMail;
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('landing_page_1');
 
 });
-Route::get('/landing_page_2', function () { 
-    return view('landing_page_2'); 
+Route::get('/landing_page_2', function () {
+    return view('landing_page_2');
 })->name('landing_page_2');
-
-Route::get('/menu', function () {
-    return view('menu.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/verify-otp', [RegisteredUserController::class, 'verifyOtp'])->name('verifyOtp');
 
-Route::get('/otp-verification', function(){
+Route::get('/otp-verification', function () {
     return view('otp-verification');
 })->name('otp-verification');
 
@@ -56,10 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::get('listfoodedit{id}', [DietDanIntakeZatGiziController::class, 'listFoodEdit'])->name('listfood.edit');
     Route::put('listfoodupdate{id}', [DietDanIntakeZatGiziController::class, 'listFoodUpdate'])->name('listfood.update');
     Route::delete('listfooddestroy{id}', [DietDanIntakeZatGiziController::class, 'listFoodDestroy'])->name('listfood.destroy');
-    Route::get('rekomendasiwaktumakan', function(){
+    Route::get('rekomendasiwaktumakan', function () {
         return view('dietDanIntakeZatGizi.rekomendasiwaktumakan');
     })->name('rekomendasiwaktumakan');
-    
+
     Route::get('listfoodcategorycreate', [DietDanIntakeZatGiziController::class, 'listFoodCategoryCreate'])->name('listfoodcategory.create');
     Route::post('listfoodcategorystore', [DietDanIntakeZatGiziController::class, 'listFoodCategoryStore'])->name('listfoodcategory.store');
     Route::get('listfoodcategoryindex', [DietDanIntakeZatGiziController::class, 'listFoodCategoryIndex'])->name('listfoodcategory.index');
@@ -73,13 +69,13 @@ Route::middleware('auth')->group(function () {
     Route::get('intro_page_1', function () {
         return view('introPage.intro_page_1');
     })->name('intro_page_1');
-    Route::get('intro_page_2', function(){
+    Route::get('intro_page_2', function () {
         return view('introPage.intro_page_2');
     });
     Route::get('intro_page_3', function () {
         return view('introPage.intro_page_3');
     });
-    Route::post('data_personal', function(Request $request){
+    Route::post('data_personal', function (Request $request) {
         $validate = $request->validate([
             'weight' => 'required',
             'height' => 'required'
@@ -97,4 +93,4 @@ Route::middleware('auth')->group(function () {
     })->name('data_personal');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

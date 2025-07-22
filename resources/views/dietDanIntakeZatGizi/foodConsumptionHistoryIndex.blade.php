@@ -29,7 +29,7 @@
             margin-bottom: 8px;
         }
     </style>
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
         <div class="d-grid align-items-center rounded" style="background-image: url({{asset('background-dietdanintakezatgizi.jpg')}}); background-repeat: no-repeat; height:6rem; background-size: cover; background-position: center 48%;">
         <p class="h2 text-white">Riwayat asupan</p>
         </div>

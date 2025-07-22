@@ -33,14 +33,13 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('otp-verification')->with('error', 'Anda harus memverifikasi OTP terlebih dahulu.');
         }
 
-        
-        if(!$user->has_seen_intro){
+
+        if (!$user->has_seen_intro) {
             return redirect()->route('intro_page_1');
         }
 
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('catatankesehatan.index', absolute: false));
     }
 
     /**

@@ -28,7 +28,7 @@ $topics = [
 ];
 
     @endphp
-    <div class="container margin-top-for-content-desktop">
+    <div class="container margin-top-for-content-desktop margin-top-for-content-mobile">
         <div class="mt-3">
 
             @if (auth()->user()->id == 1)
